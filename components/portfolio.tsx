@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin } from 'lucide-react'
+import { MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin, Cloud, LockKeyhole, Infinity, ServerCog, Mail } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 interface AnimatedTextProps {
@@ -73,14 +73,73 @@ export function Portfolio() {
 
   const content = {
     About: (
-      <div>
-        <h2 className="text-2xl font-bold mb-4">About Me</h2>
-        <AnimatedText text="A passionate and skilled DevOps, SRE, and Cloud Engineer with a strong background in infrastructure provisioning, automation, and monitoring. I have been certified by Google Cloud for Associate Cloud Engineer and AWS Certified Cloud Practitioner." animationKey={activeTab} />
-        <ul className="list-disc list-inside mt-4">
-          <li><AnimatedText text="DevOps Engineer at XYZ Company - Jan 2020 to Present" animationKey={`${activeTab}-1`} /></li>
-          <li><AnimatedText text="Cloud Engineer at ABC Corporation - Jun 2018 to Dec 2019" animationKey={`${activeTab}-2`} /></li>
-          <li><AnimatedText text="Bachelor's Degree in Computer Science - University of Example" animationKey={`${activeTab}-3`} /></li>
-        </ul>
+      <div className="text-[#3E2723]">
+        <h2 className="text-3xl font-bold mb-6">About Me</h2>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeInVariants}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="mb-4">
+            <AnimatedText 
+              text="A passionate and skilled DevOps, SRE, and Cloud Engineer with a strong background in infrastructure provisioning, automation, and monitoring. I have completed and been certified by Google Cloud for Associate Cloud Engineer and AWS for AWS Certified Cloud Practitioner."
+              animationKey={`${activeTab}-1`}
+            />
+          </div>
+          <div className="mb-4">
+            <AnimatedText 
+              text="Have experience working with tools such as Jenkins, Terraform, and Ansible to streamline development processes and ensure efficient code deployment. Proficient in managing and monitoring cloud infrastructure services on AWS and GCP, as well as maintaining high availability in Kubernetes-based container clusters. Successfully implemented monitoring and logging tools like ELK, Grafana, and Datadog to ensure comprehensive visibility into system performance and implemented GitOps for managing infrastructure as code. My expertise also includes integrating automation testing into the CI/CD pipeline and developing scripts to automate tasks, improving efficiency and reducing manual effort."
+              animationKey={`${activeTab}-2`}
+            />
+          </div>
+          <div className="mb-4">
+            <AnimatedText 
+              text="With a Bachelor's degree in Computer Science and a strong GPA, I am committed to continuous learning and professional growth. I am seeking opportunities to leverage my skills and contribute to the success of DevOps, SRE and cloud engineering projects."
+              animationKey={`${activeTab}-3`}
+            />
+          </div>
+        </motion.div>
+        <h3 className="text-2xl font-semibold mb-4 mt-8">What I'm Doing</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[
+            {
+              title: "Cloud Security",
+              description: "I enjoy learning software development either for personal or specific purposes",
+              icon: <LockKeyhole className="w-12 h-12 mb-4" />
+            },
+            {
+              title: "Cloud Engineer",
+              description: "Equipped with abilities to design, secure and maintenance of an organization's cloud-based infrastructure and application",
+              icon: <Cloud className="w-12 h-12 mb-4" />
+            },
+            {
+              title: "DevOps",
+              description: "I enjoy to improve the speed and quality of delivery, automate and achieve CICD",
+              icon: <Infinity className="w-12 h-12 mb-4" />
+            },
+            {
+              title: "SRE",
+              description: "I curious the processes and tools that ensure the scalability, reliability and availability of software systems",
+              icon: <ServerCog className="w-12 h-12 mb-4" />
+            }
+          ].map((item, index) => (
+            <motion.div
+              key={item.title}
+              className="bg-[#E6DCC8] p-6 rounded-lg shadow-lg"
+              initial="hidden"
+              animate="visible"
+              variants={fadeInVariants}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div className="flex flex-col items-center text-center">
+                {item.icon}
+                <h4 className="text-xl font-semibold mb-2">{item.title}</h4>
+                <p>{item.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     ),
     Resume: (
@@ -198,14 +257,73 @@ export function Portfolio() {
       </div>
     ),
     Contact: (
-      <div>
-        <h2 className="text-2xl font-bold mb-4">Contact Me</h2>
-        <AnimatedText text="If you would like to get in touch, please reach out through one of the following channels:" animationKey={activeTab} />
-        <ul className="space-y-2 mt-4">
-          <li>Email: <a href="mailto:elian@example.com" className="text-[#3E2723] hover:underline"><AnimatedText text="elian@example.com" animationKey={`${activeTab}-1`} /></a></li>
-          <li>LinkedIn: <a href="#" className="text-[#3E2723] hover:underline"><AnimatedText text="LinkedIn Profile" animationKey={`${activeTab}-2`} /></a></li>
-          <li>GitHub: <a href="#" className="text-[#3E2723] hover:underline"><AnimatedText text="GitHub Profile" animationKey={`${activeTab}-3`} /></a></li>
-        </ul>
+      <div className="text-[#3E2723]">
+        <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeInVariants}
+          transition={{ duration: 0.5 }}
+        >
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target as HTMLFormElement);
+              const subject = encodeURIComponent("Contact from Portfolio");
+              const body = encodeURIComponent(`Name: ${formData.get('name')}\nEmail: ${formData.get('email')}\nMessage: ${formData.get('message')}`);
+              window.location.href = `mailto:eztz721@gmail.com?subject=${subject}&body=${body}`;
+            }}
+            className="space-y-4"
+          >
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                className="w-full px-3 py-2 border border-[#C4A484] rounded-md bg-[#FFF8E1] focus:outline-none focus:ring-2 focus:ring-[#3E2723]"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                className="w-full px-3 py-2 border border-[#C4A484] rounded-md bg-[#FFF8E1] focus:outline-none focus:ring-2 focus:ring-[#3E2723]"
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows={4}
+                className="w-full px-3 py-2 border border-[#C4A484] rounded-md bg-[#FFF8E1] focus:outline-none focus:ring-2 focus:ring-[#3E2723]"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-[#3E2723] text-[#FFF8E1] py-2 px-4 rounded-md hover:bg-[#5D4037] transition-colors duration-300"
+            >
+              Send Message
+            </button>
+          </form>
+        </motion.div>
+        <div className="mt-8 flex justify-center space-x-6">
+          <a href="mailto:EzTz721@gmail.com"  target="_blank" rel="noopener noreferrer" className="text-[#3E2723] hover:text-[#5D4037]">
+            <Mail className="w-6 h-6" />
+          </a>
+          <a href="https://www.linkedin.com/in/elian-gutierrez-795088264/"  target="_blank" rel="noopener noreferrer" className="text-[#3E2723] hover:text-[#5D4037]">
+            <Linkedin className="w-6 h-6" />
+          </a>
+          <a href="https://github.com/Diechewood"  target="_blank" rel="noopener noreferrer" className="text-[#3E2723] hover:text-[#5D4037]">
+            <Github className="w-6 h-6" />
+          </a>
+        </div>
       </div>
     )
   }
@@ -242,10 +360,10 @@ export function Portfolio() {
                 <h1 className="text-3xl font-bold">Elian Gutierrez</h1>
                 <p className="text-[#3E2723]">DevOps | SRE | Cloud Engineer</p>
                 <div className="flex justify-center md:justify-start space-x-4 mt-2">
-                  <a href="#" className="text-[#3E2723] hover:text-[#5D4037]" title="Linkedin">
+                  <a href="https://www.linkedin.com/in/elian-gutierrez-795088264/"  target="_blank" rel="noopener noreferrer" className="text-[#3E2723] hover:text-[#5D4037]" title="Linkedin">
                     <Linkedin className="w-5 h-5" />
                   </a>
-                  <a href="#" className="text-[#3E2723] hover:text-[#5D4037]" title="GitHub">
+                  <a href="https://github.com/Diechewood"  target="_blank" rel="noopener noreferrer" className="text-[#3E2723] hover:text-[#5D4037]" title="GitHub">
                     <Github className="w-5 h-5" />
                   </a>
                 </div>
@@ -255,19 +373,19 @@ export function Portfolio() {
               <div className="bg-[#C4A484] p-4 rounded-lg">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-[#3E2723] text-md">EMAIL</p>
-                    <a href="mailto:elian@example.com" className="text-[#FFF8E1] text-sm hover:underline">elian@example.com</a>
+                    <p className="text-[#3E2723] text-md font-bold">EMAIL</p>
+                    <a href="mailto:EzTz721@gmail.com"  target="_blank" rel="noopener noreferrer" className="text-[#FFF8E1] text-sm hover:underline">EzTz721@gmail.com</a>
                   </div>
                   <div>
-                    <p className="text-[#3E2723] text-md">CV</p>
-                    <a href="#" className="text-[#FFF8E1] text-sm hover:underline flex items-center justify-center md:justify-end">
+                    <p className="text-[#3E2723] text-md font-bold">CV</p>
+                    <a href="#"  target="_blank" rel="noopener noreferrer" className="text-[#FFF8E1] text-sm hover:underline flex items-center justify-center md:justify-end">
                       Download <Download className="w-4 h-4 ml-1" />
                     </a>
                   </div>
                   <div className="col-span-2">
-                    <p className="text-[#3E2723] text-md">LOCATION</p>
+                    <p className="text-[#3E2723] text-md font-bold">LOCATION</p>
                     <p className="text-[#FFF8E1] text-sm flex items-center justify-center md:justify-end">
-                      Jakarta, ID <MapPin className="w-4 h-4 ml-1" />
+                      Houston, Texas <MapPin className="w-4 h-4 ml-1" />
                     </p>
                   </div>
                 </div>
