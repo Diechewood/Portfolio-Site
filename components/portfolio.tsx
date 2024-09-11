@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { MessageSquareMore, Wrench, Newspaper, UserRound } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -23,7 +23,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, animationKey }) => {
       const timer = setTimeout(() => {
         setDisplayedText(prev => prev + text[currentIndex])
         setCurrentIndex(prev => prev + 1)
-      }, 10) // Adjust this value to change typing speed
+      }, 10)
 
       return () => clearTimeout(timer)
     }
@@ -34,6 +34,8 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, animationKey }) => {
 
 export function Portfolio() {
   const [activeTab, setActiveTab] = useState('About')
+  const [stickyTop, setStickyTop] = useState(0)
+  const headerRef = useRef<HTMLElement>(null)
 
   const tabs = ['About', 'Resume', 'Portfolio', 'Contact']
 
@@ -41,6 +43,20 @@ export function Portfolio() {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
   }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (headerRef.current) {
+        const headerBottom = headerRef.current.getBoundingClientRect().bottom
+        setStickyTop(Math.max(0, headerBottom))
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const content = {
     About: (
@@ -55,7 +71,7 @@ export function Portfolio() {
       </div>
     ),
     Resume: (
-      <div className="text-white">
+      <div className="text-[#3E2723]">
         <h2 className="text-3xl font-bold mb-6">Resume</h2>
         <motion.div
           className="mb-8"
@@ -65,7 +81,7 @@ export function Portfolio() {
           transition={{ duration: 0.5 }}
         >
           <h3 className="text-2xl font-semibold mb-4">Education</h3>
-          <div className="mb-4 bg-[#4A3728] p-4 rounded-lg shadow-lg">
+          <div className="mb-4 bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
             <h4 className="text-xl font-semibold">University of Houston - Main Campus</h4>
             <p>Bachelor of Science in Computer Information Systems</p>
             <p>Minor in Technology, Leadership, and Innovation Management</p>
@@ -76,7 +92,7 @@ export function Portfolio() {
         </motion.div>
         <div>
           <h3 className="text-2xl font-semibold mb-4">Experience</h3>
-          <div className="relative border-l-2 border-blue-500 pl-8 pb-8">
+          <div className="relative border-l-2 border-[#3E2723] pl-8 pb-8">
             {[
               {
                 title: "Adair Kitchen",
@@ -121,12 +137,12 @@ export function Portfolio() {
                 variants={fadeInVariants}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="absolute -left-10 mt-1.5 h-4 w-4 rounded-full bg-blue-500 shadow-md"></div>
-                <div className="bg-[#4A3728] p-4 rounded-lg shadow-lg">
+                <div className="absolute -left-10 top-1/2 transform -translate-y-1/2 h-4 w-4 rounded-full bg-[#3E2723] shadow-md border-2 border-white"></div>
+                <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
                   <h4 className="text-xl font-semibold">{job.title}</h4>
                   <p className="text-lg">{job.position}</p>
-                  <p className="text-gray-400">{job.date}</p>
-                  <p className="text-gray-400">{job.location}</p>
+                  <p className="text-gray-600">{job.date}</p>
+                  <p className="text-gray-600">{job.location}</p>
                   <ul className="list-disc list-inside mt-2">
                     {job.responsibilities.map((resp, i) => (
                       <li key={i}>{resp}</li>
@@ -197,10 +213,10 @@ export function Portfolio() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFF8E1] text-[#3E2723] p-4 flex items-center justify-center">
-      <div className="max-w-6xl w-full space-y-4">
+    <div className="min-h-screen bg-[#FFF8E1] text-[#3E2723] p-4">
+      <div className="max-w-6xl mx-auto space-y-4">
         {/* Header */}
-        <header className="bg-[#C4A484] p-6 rounded-lg shadow-lg">
+        <header ref={headerRef} className="bg-[#C4A484] p-6 rounded-lg shadow-lg">
           <div className="flex items-center">
             <img
               src="/placeholder.svg?height=100&width=100"
@@ -217,17 +233,25 @@ export function Portfolio() {
         {/* Main content */}
         <div className="flex flex-col md:flex-row gap-4">
           {/* Tab switcher */}
-          <nav className="bg-[#C4A484] p-4 rounded-lg shadow-lg md:w-auto min-w-32">
+          <nav 
+            className="bg-[#C4A484] p-4 rounded-lg shadow-lg w-full md:w-auto min-w-32 top-0 z-10"
+            style={{
+              position: 'sticky',
+              top: stickyTop,
+              height: 'fit-content',
+              alignSelf: 'flex-start'
+            }}
+          >
             <ul className="grid grid-cols-4 md:grid-cols-1 gap-2">
               {tabs.map((tab) => (
                 <li key={tab}>
                   <button
                     onClick={() => setActiveTab(tab)}
-                    className={`w-full aspect-rectangle md:h-24 md:w-24 flex flex-col items-center justify-center p-2 rounded-md transition-colors ${
+                    className={`w-full aspect-rectangle md:aspect-auto md:h-24 md:w-24 flex flex-col items-center justify-center p-2 rounded-md transition-colors ${
                       activeTab === tab
-                      ? 'bg-[#3E2723] text-[#FFF8E1] shadow-inner'
-                      : 'bg-[#E6DCC8] text-[#3E2723] hover:bg-[#D7CCA1] hover:shadow-inner'
-                  }`}
+                        ? 'bg-[#3E2723] text-[#FFF8E1]'
+                        : 'bg-[#FFF8E1] text-[#3E2723] hover:bg-[#E6DCC8]'
+                    }`}
                   >
                     {getTabIcon(tab)}
                     <span className="text-xs md:text-sm text-center">{tab}</span>
