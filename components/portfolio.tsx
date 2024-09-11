@@ -126,7 +126,7 @@ export function Portfolio() {
           ].map((item, index) => (
             <motion.div
               key={item.title}
-              className="bg-[#E6DCC8] p-6 rounded-lg shadow-lg"
+              className="bg-[#3E2723] p-6 rounded-lg shadow-lg text-[#FFF8E1]"
               initial="hidden"
               animate="visible"
               variants={fadeInVariants}
@@ -210,11 +210,11 @@ export function Portfolio() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div className="absolute -left-10 top-1/2 transform -translate-y-1/2 h-4 w-4 rounded-full bg-[#3E2723] shadow-md border-2 border-white"></div>
-                <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
+                <div className="bg-[#3E2723] p-4 rounded-lg shadow-lg text-[#FFF8E1]">
                   <h4 className="text-xl font-semibold">{job.title}</h4>
                   <p className="text-lg">{job.position}</p>
-                  <p className="text-gray-600">{job.date}</p>
-                  <p className="text-gray-600">{job.location}</p>
+                  <p className="text-[#C4A484]">{job.date}</p>
+                  <p className="text-[#C4A484]">{job.location}</p>
                   <ul className="list-disc list-inside mt-2">
                     {job.responsibilities.map((resp, i) => (
                       <li key={i}>{resp}</li>
@@ -243,7 +243,7 @@ export function Portfolio() {
           ].map((project, index) => (
             <motion.div
               key={project.title}
-              className="bg-[#E6DCC8] p-4 rounded-lg"
+              className="bg-[#3E2723] p-4 rounded-lg text-[#FFF8E1]"
               initial="hidden"
               animate="visible"
               variants={fadeInVariants}
@@ -352,9 +352,9 @@ export function Portfolio() {
           <div className="flex flex-col md:flex-row items-center md:items-start md:justify-between">
             <div className="flex flex-col items-center md:flex-row md:items-start">
               <img
-                src="/placeholder.svg?height=100&width=100"
+                src="/images/profile.jpg"
                 alt="Profile"
-                className="w-24 h-24 rounded-full mb-4 md:mb-0 md:mr-6"
+                className="md:w-40 md:h-40  w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-6"
               />
               <div className="text-center md:text-left">
                 <h1 className="text-3xl font-bold">Elian Gutierrez</h1>
@@ -373,17 +373,17 @@ export function Portfolio() {
               <div className="bg-[#C4A484] p-4 rounded-lg">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-[#3E2723] text-md font-bold">EMAIL</p>
+                    <p className="text-[#3E2723] text-sm font-bold">EMAIL</p>
                     <a href="mailto:EzTz721@gmail.com"  target="_blank" rel="noopener noreferrer" className="text-[#FFF8E1] text-sm hover:underline">EzTz721@gmail.com</a>
                   </div>
                   <div>
-                    <p className="text-[#3E2723] text-md font-bold">CV</p>
+                    <p className="text-[#3E2723] text-sm font-bold">CV</p>
                     <a href="#"  target="_blank" rel="noopener noreferrer" className="text-[#FFF8E1] text-sm hover:underline flex items-center justify-center md:justify-end">
                       Download <Download className="w-4 h-4 ml-1" />
                     </a>
                   </div>
                   <div className="col-span-2">
-                    <p className="text-[#3E2723] text-md font-bold">LOCATION</p>
+                    <p className="text-[#3E2723] text-sm font-bold">LOCATION</p>
                     <p className="text-[#FFF8E1] text-sm flex items-center justify-center md:justify-end">
                       Houston, Texas <MapPin className="w-4 h-4 ml-1" />
                     </p>
