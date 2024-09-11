@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { MessageSquareMore, Wrench, Newspaper, UserRound } from 'lucide-react'
+import { MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 interface AnimatedTextProps {
@@ -31,6 +31,19 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, animationKey }) => {
 
   return <span>{displayedText}</span>
 }
+
+const BackgroundSVG = () => (
+  <svg className="fixed inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="triangles" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path d="M0 0 L50 0 L25 43.3 Z" fill="#C4A484" opacity="0.1" />
+        <path d="M50 0 L100 0 L75 43.3 Z" fill="#3E2723" opacity="0.1" />
+        <path d="M25 43.3 L75 43.3 L50 86.6 Z" fill="#E6DCC8" opacity="0.1" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#triangles)" />
+  </svg>
+)
 
 export function Portfolio() {
   const [activeTab, setActiveTab] = useState('About')
@@ -214,18 +227,51 @@ export function Portfolio() {
 
   return (
     <div className="min-h-screen bg-[#FFF8E1] text-[#3E2723] p-4">
-      <div className="max-w-6xl mx-auto space-y-4">
+      <BackgroundSVG />
+      <div className="max-w-6xl mx-auto space-y-4 flex flex-col relative z-10">
         {/* Header */}
         <header ref={headerRef} className="bg-[#C4A484] p-6 rounded-lg shadow-lg">
-          <div className="flex items-center">
-            <img
-              src="/placeholder.svg?height=100&width=100"
-              alt="Profile"
-              className="w-20 h-20 rounded-full mr-6"
-            />
-            <div>
-              <h1 className="text-3xl font-bold">Elian Gutierrez</h1>
-              <p className="text-[#3E2723]">DevOps | SRE | Cloud Engineer</p>
+          <div className="flex flex-col md:flex-row items-center md:items-start md:justify-between">
+            <div className="flex flex-col items-center md:flex-row md:items-start">
+              <img
+                src="/placeholder.svg?height=100&width=100"
+                alt="Profile"
+                className="w-24 h-24 rounded-full mb-4 md:mb-0 md:mr-6"
+              />
+              <div className="text-center md:text-left">
+                <h1 className="text-3xl font-bold">Elian Gutierrez</h1>
+                <p className="text-[#3E2723]">DevOps | SRE | Cloud Engineer</p>
+                <div className="flex justify-center md:justify-start space-x-4 mt-2">
+                  <a href="#" className="text-[#3E2723] hover:text-[#5D4037]" title="Linkedin">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a href="#" className="text-[#3E2723] hover:text-[#5D4037]" title="GitHub">
+                    <Github className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 md:mt-0 text-center md:text-right">
+              <div className="bg-[#C4A484] p-4 rounded-lg">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-[#3E2723] text-md">EMAIL</p>
+                    <a href="mailto:elian@example.com" className="text-[#FFF8E1] text-sm hover:underline">elian@example.com</a>
+                  </div>
+                  <div>
+                    <p className="text-[#3E2723] text-md">CV</p>
+                    <a href="#" className="text-[#FFF8E1] text-sm hover:underline flex items-center justify-center md:justify-end">
+                      Download <Download className="w-4 h-4 ml-1" />
+                    </a>
+                  </div>
+                  <div className="col-span-2">
+                    <p className="text-[#3E2723] text-md">LOCATION</p>
+                    <p className="text-[#FFF8E1] text-sm flex items-center justify-center md:justify-end">
+                      Jakarta, ID <MapPin className="w-4 h-4 ml-1" />
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </header>
