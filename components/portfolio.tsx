@@ -23,7 +23,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, animationKey }) => {
       const timer = setTimeout(() => {
         setDisplayedText(prev => prev + text[currentIndex])
         setCurrentIndex(prev => prev + 1)
-      }, 8)
+      }, 3)
 
       return () => clearTimeout(timer)
     }
@@ -91,19 +91,31 @@ export function Portfolio() {
 
           <div className="mb-4">
             <AnimatedText 
-              text="A passionate and skilled DevOps, SRE, and Cloud Engineer with a strong background in infrastructure provisioning, automation, and monitoring. I have completed and been certified by Google Cloud for Associate Cloud Engineer and AWS for AWS Certified Cloud Practitioner."
+              text="Hello! I’m Elian Gutierrez, a cloud computing enthusiast with a passion for cloud security. Currently, I am pursuing a Bachelor of Science in Computer Information Systems from the University of Houston, where I have honed my skills in cloud architecture, security, and application development. With a strong academic foundation, including relevant coursework like Cloud Computing Architecture and Enterprise Application Development, I’m on a mission to secure the cloud and help organizations protect their data and infrastructure."
               animationKey={`${activeTab}-1`}
             />
           </div>
           <div className="mb-4">
             <AnimatedText 
-              text="Have experience working with tools such as Jenkins, Terraform, and Ansible to streamline development processes and ensure efficient code deployment. Proficient in managing and monitoring cloud infrastructure services on AWS and GCP, as well as maintaining high availability in Kubernetes-based container clusters. Successfully implemented monitoring and logging tools like ELK, Grafana, and Datadog to ensure comprehensive visibility into system performance and implemented GitOps for managing infrastructure as code. My expertise also includes integrating automation testing into the CI/CD pipeline and developing scripts to automate tasks, improving efficiency and reducing manual effort."
+              text="In my recent projects, I’ve focused on leveraging AWS to build secure and scalable solutions. One of my key projects, EZSender, showcases my ability to integrate AWS services such as Lambda, S3, Cognito, and API Gateway to build a robust mass email campaign system. This project allowed me to explore key security concerns around user authentication and secure data transmission, reinforcing my commitment to cloud security best practices."
               animationKey={`${activeTab}-2`}
             />
           </div>
           <div className="mb-4">
             <AnimatedText 
-              text="With a Bachelor's degree in Computer Science and a strong GPA, I am committed to continuous learning and professional growth. I am seeking opportunities to leverage my skills and contribute to the success of DevOps, SRE and cloud engineering projects."
+              text="My technical expertise extends to AWS serverless technologies, including Lambda, SQS, SNS, and IAM policies for secure access control. I am also skilled in automating infrastructure using Terraform and CloudFormation, ensuring that systems are both scalable and resilient."
+              animationKey={`${activeTab}-3`}
+            />
+          </div>
+          <div className="mb-4">
+            <AnimatedText 
+              text="Beyond technical skills, I thrive in collaborative environments, having worked on teams where I contributed to developing cloud-based applications and consulted on information system security. I believe that communication and teamwork are essential in driving innovation and delivering secure solutions."
+              animationKey={`${activeTab}-3`}
+            />
+          </div>
+          <div className="mb-4">
+            <AnimatedText 
+              text="As I look to the future, I’m eager to contribute to the field of cloud security, helping organizations safeguard their assets in the cloud. Whether it’s architecting secure systems or mitigating vulnerabilities, I’m ready to take on new challenges and make an impact."
               animationKey={`${activeTab}-3`}
             />
           </div>
@@ -305,22 +317,22 @@ export function Portfolio() {
               image: "/images/image-suite.png",
               category: "Project",
               tags: [
-                { name: "GitHub", link: "https://github.com/yourusername/image-suite" },
+                { name: "GitHub", link: "https://github.com/Diechewood/image-suite" },
                 { name: "Website", link: "https://image-suite-demo.com" }
               ]
             },
             {
               title: "EZSender",
-              image: "/placeholder.svg?height=200&width=300",
+              image: "/images/ezsender.png",
               category: "Project",
               tags: [
-                { name: "GitHub", link: "https://github.com/yourusername/ezsender" },
+                { name: "GitHub", link: "https://github.com/Diechewood/EZSender" },
                 { name: "Website", link: "https://ezsender-demo.com" }
               ]
             },
             {
               title: "Portfolio Site",
-              image: "/placeholder.svg?height=200&width=300",
+              image: "/images/portfolio-site.png",
               category: "Project",
               tags: [
                 { name: "GitHub", link: "https://github.com/yourusername/portfolio" },
@@ -329,10 +341,10 @@ export function Portfolio() {
             },
             {
               title: "SpeedyStats",
-              image: "/placeholder.svg?height=200&width=300",
+              image: "/images/speedystats.png",
               category: "Project",
               tags: [
-                { name: "GitHub", link: "https://github.com/yourusername/speedystats" },
+                { name: "GitHub", link: "https://github.com/Diechewood/speedystats" },
                 { name: "Documentation", link: "https://github.com/yourusername/speedystats" },
                 { name: "Website", link: "https://speedystats-demo.com" }
               ]
