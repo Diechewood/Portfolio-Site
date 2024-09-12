@@ -23,7 +23,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, animationKey }) => {
       const timer = setTimeout(() => {
         setDisplayedText(prev => prev + text[currentIndex])
         setCurrentIndex(prev => prev + 1)
-      }, 10)
+      }, 8)
 
       return () => clearTimeout(timer)
     }
@@ -82,15 +82,13 @@ export function Portfolio() {
     About: (
       <div className="text-[#3E2723]">
         <h2 className="text-3xl font-bold mb-1">About Me</h2>
-        <div className="flex items-center my-1 mt-0 mb-1">
-          <BarGraphic />
-        </div>
         <motion.div
           initial="hidden"
           animate="visible"
           variants={fadeInVariants}
           transition={{ duration: 0.5 }}
         >
+
           <div className="mb-4">
             <AnimatedText 
               text="A passionate and skilled DevOps, SRE, and Cloud Engineer with a strong background in infrastructure provisioning, automation, and monitoring. I have completed and been certified by Google Cloud for Associate Cloud Engineer and AWS for AWS Certified Cloud Practitioner."
@@ -155,9 +153,6 @@ export function Portfolio() {
     Resume: (
       <div className="text-[#3E2723]">
         <h2 className="text-3xl font-bold mb-1">Resume</h2>
-        <div className="flex items-center my-1 mt-0 mb-1">
-          <BarGraphic />
-        </div>
         <motion.div
           className="mb-8"
           initial="hidden"
@@ -165,6 +160,9 @@ export function Portfolio() {
           variants={fadeInVariants}
           transition={{ duration: 0.5 }}
         >
+        <div className="flex items-center my-1 mt-0 mb-1">
+          <BarGraphic />
+        </div>
           <div className="flex items-center mb-4">
             <GraduationCap className="w-6 h-6 mr-2" />
             <h3 className="text-2xl font-semibold">Education</h3>
@@ -299,31 +297,81 @@ export function Portfolio() {
     ),
     Portfolio: (
       <div>
-        <h2 className="text-3xl font-bold mb-1">Portfolio</h2>
-        <div className="flex items-center my-1 mt-0 mb-3">
-          <BarGraphic />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <h2 className="text-3xl font-bold mb-6">Portfolio</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
           {[
             {
-              title: "Cloud Migration Project",
-              description: "Led the migration of a monolithic application to a microservices architecture on AWS."
+              title: "Image Suite",
+              image: "/images/image-suite.png",
+              category: "Project",
+              tags: [
+                { name: "GitHub", link: "https://github.com/yourusername/image-suite" },
+                { name: "Website", link: "https://image-suite-demo.com" }
+              ]
             },
             {
-              title: "Automated CI/CD Pipeline",
-              description: "Implemented a fully automated CI/CD pipeline using Jenkins, Docker, and Kubernetes."
-            }
+              title: "EZSender",
+              image: "/placeholder.svg?height=200&width=300",
+              category: "Project",
+              tags: [
+                { name: "GitHub", link: "https://github.com/yourusername/ezsender" },
+                { name: "Website", link: "https://ezsender-demo.com" }
+              ]
+            },
+            {
+              title: "Portfolio Site",
+              image: "/placeholder.svg?height=200&width=300",
+              category: "Project",
+              tags: [
+                { name: "GitHub", link: "https://github.com/yourusername/portfolio" },
+                { name: "Website", link: "https://yourportfolio.com" }
+              ]
+            },
+            {
+              title: "SpeedyStats",
+              image: "/placeholder.svg?height=200&width=300",
+              category: "Project",
+              tags: [
+                { name: "GitHub", link: "https://github.com/yourusername/speedystats" },
+                { name: "Documentation", link: "https://github.com/yourusername/speedystats" },
+                { name: "Website", link: "https://speedystats-demo.com" }
+              ]
+            },
           ].map((project, index) => (
             <motion.div
               key={project.title}
-              className="bg-[#3E2723] p-4 rounded-lg text-[#FFF8E1]"
+              className="flex flex-col relative overflow-hidden rounded-lg shadow-lg bg-[#3E2723]"
               initial="hidden"
               animate="visible"
               variants={fadeInVariants}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <h3 className="text-xl font-semibold">{project.title}</h3>
-              <p>{project.description}</p>
+              <div className="relative w-full h-48">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-2 left-2 bg-[#FF9800] text-[#3E2723] text-xs font-bold px-2 py-1 rounded">
+                  {project.category}
+                </div>
+              </div>
+              <div className="p-4 flex-grow">
+                <h3 className="text-lg font-semibold text-[#FFF8E1] mb-2">{project.title}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <a
+                      key={tag.name}
+                      href={tag.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-[#C4A484] text-[#3E2723] text-xs font-bold px-2 py-1 rounded hover:bg-[#E6DCC8] transition-colors duration-300"
+                    >
+                      {tag.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -332,15 +380,15 @@ export function Portfolio() {
     Contact: (
       <div className="text-[#3E2723]">
         <h2 className="text-3xl font-bold mb-1">Contact Me</h2>
-        <div className="flex items-center my-1 mt-0 mb-2">
-          <BarGraphic />
-        </div>
         <motion.div
           initial="hidden"
           animate="visible"
           variants={fadeInVariants}
           transition={{ duration: 0.5 }}
-        >
+          >
+          <div className="flex items-center my-1 mt-0 mb-1">
+            <BarGraphic />
+          </div>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -423,53 +471,57 @@ export function Portfolio() {
     <div className="min-h-screen bg-[#FFF8E1] text-[#3E2723] p-4">
       <BackgroundSVG />
       <div className="max-w-6xl mx-auto space-y-4 flex flex-col relative z-10">
-        {/* Header */}
-        <header ref={headerRef} className="bg-[#C4A484] p-6 rounded-lg shadow-lg">
-          <div className="flex flex-col md:flex-row items-center md:items-center md:justify-between">
-            <div className="flex flex-col md:flex-row items-center md:items-center">
+        {/* Updated Header */}
+      <header ref={headerRef} className="bg-[#3E2723] p-6 rounded-lg shadow-lg">
+        <div className="flex flex-col sm:flex-row items-center lg:items-start justify-between">
+          <div className="flex flex-col sm:flex-row items-center sm:items-center mb-6 lg:mb-0">
+            <div className="mb-4 sm:mb-0 sm:mr-6">
               <img
                 src="/images/profile.jpg"
                 alt="Profile"
-                className="md:w-40 md:h-40 w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-6"
+                width={160}
+                height={160}
+                className="rounded-full border-4 border-[#C4A484]"
               />
-              <div className="text-center md:text-left flex flex-col justify-center">
-                <h1 className="text-3xl font-bold">Elian Gutierrez</h1>
-                <p className="text-[#3E2723]">DevOps | SRE | Cloud Engineer</p>
-                <div className="flex justify-center md:justify-start space-x-4 mt-2">
-                  <a href="https://www.linkedin.com/in/elian-gutierrez-795088264/" target="_blank" rel="noopener noreferrer" className="text-[#3E2723] hover:text-[#5D4037]" title="Linkedin">
-                    <Linkedin className="w-5 h-5" />
-                  </a>
-                  <a href="https://github.com/Diechewood" target="_blank" rel="noopener noreferrer" className="text-[#3E2723] hover:text-[#5D4037]" title="GitHub">
-                    <Github className="w-5 h-5" />
-                  </a>
-                </div>
+            </div>
+            <div className="text-center sm:text-left">
+              <h1 className="text-3xl font-bold text-[#FFF8E1]">Elian Gutierrez</h1>
+              <p className="text-[#C4A484]">DevOps | SRE | Cloud Engineer</p>
+              <div className="flex justify-center sm:justify-start space-x-4 mt-2">
+                <a href="https://www.linkedin.com/in/elian-gutierrez-795088264/" target="_blank" rel="noopener noreferrer" className="text-[#C4A484] hover:text-[#FFF8E1]">
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a href="https://github.com/Diechewood" target="_blank" rel="noopener noreferrer" className="text-[#C4A484] hover:text-[#FFF8E1]">
+                  <Github className="w-5 h-5" />
+                </a>
               </div>
             </div>
-            <div className="mt-4 md:mt-0 text-center md:text-right">
-              <div className="bg-[#C4A484] p-4 rounded-lg">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-[#3E2723] text-sm font-bold">EMAIL</p>
-                    <a href="mailto:EzTz721@gmail.com" target="_blank" rel="noopener noreferrer" className="text-[#FFF8E1] text-sm hover:underline">EzTz721@gmail.com</a>
-                  </div>
-                  <div>
-                    <p className="text-[#3E2723] text-sm font-bold">CV</p>
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#FFF8E1] text-sm hover:underline flex items-center justify-center md:justify-end">
-                      Download <Download className="w-4 h-4 ml-1" />
-                    </a>
-                  </div>
-                  <div className="col-span-2">
-                    <p className="text-[#3E2723] text-sm font-bold">LOCATION</p>
-                    <p className="text-[#FFF8E1] text-sm flex items-center justify-center md:justify-end">
-                      Houston, Texas <MapPin className="w-4 h-4 ml-1" />
-                    </p>
-                  </div>
+          </div>
+          <div className="lg:w-1/2 flex items-center justify-center">
+            <div className="bg-[#3E2723] p-4 rounded-lg max-w-xs w-full">
+              <div className="grid grid-cols-2 gap-4 text-[#FFF8E1]">
+                <div>
+                  <p className="text-[#C4A484] text-sm font-bold">EMAIL</p>
+                  <a href="mailto:EzTz721@gmail.com" className="text-sm hover:underline">EzTz721@gmail.com</a>
+                </div>
+                <div>
+                  <p className="text-[#C4A484] text-sm font-bold">CV</p>
+                  <a href="#" className="text-sm hover:underline flex items-center">
+                    Download <Download className="w-4 h-4 ml-1" />
+                  </a>
+                </div>
+                <div className="col-span-2">
+                  <p className="text-[#C4A484] text-sm font-bold">LOCATION</p>
+                  <p className="text-sm flex items-center">
+                    Houston, Texas <MapPin className="w-4 h-4 ml-1" />
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </header>
-
+        </div>
+      </header>
+        
         {/* Main content */}
         <div className="flex flex-col md:flex-row gap-4">
           {/* Tab switcher */}
