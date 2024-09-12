@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin, Cloud, LockKeyhole, Infinity, ServerCog, Mail } from 'lucide-react'
+import { MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin, Cloud, LockKeyhole, Infinity, ServerCog, Mail, BriefcaseBusiness, GraduationCap } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 interface AnimatedTextProps {
@@ -31,6 +31,13 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, animationKey }) => {
 
   return <span>{displayedText}</span>
 }
+
+const BarGraphic = () => (
+  <svg width="120" height="4" viewBox="30 0 60 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="80" height="4" fill="#3E2723"/>
+    <rect x="60" width="80" height="4" fill="#E6DCC8"/>
+  </svg>
+)
 
 const BackgroundSVG = () => (
   <svg className="fixed inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +81,10 @@ export function Portfolio() {
   const content = {
     About: (
       <div className="text-[#3E2723]">
-        <h2 className="text-3xl font-bold mb-6">About Me</h2>
+        <h2 className="text-3xl font-bold mb-1">About Me</h2>
+        <div className="flex items-center my-1 mt-0 mb-1">
+          <BarGraphic />
+        </div>
         <motion.div
           initial="hidden"
           animate="visible"
@@ -144,7 +154,10 @@ export function Portfolio() {
     ),
     Resume: (
       <div className="text-[#3E2723]">
-        <h2 className="text-3xl font-bold mb-6">Resume</h2>
+        <h2 className="text-3xl font-bold mb-1">Resume</h2>
+        <div className="flex items-center my-1 mt-0 mb-1">
+          <BarGraphic />
+        </div>
         <motion.div
           className="mb-8"
           initial="hidden"
@@ -152,20 +165,50 @@ export function Portfolio() {
           variants={fadeInVariants}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-2xl font-semibold mb-4">Education</h3>
-          <div className="mb-4 bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold">University of Houston - Main Campus</h4>
-            <p>Bachelor of Science in Computer Information Systems</p>
-            <p>Minor in Technology, Leadership, and Innovation Management</p>
-            <p>GPA: 3.53</p>
-            <p>Houston, Texas | December 2024</p>
-            <p className="mt-2">Relevant coursework: Cloud Computing Architecture, Enterprise Application Development, Organizational Leadership and Supervision, Quality Improvement Methods, Leading Change in the Workplace, Information Systems Operations</p>
+          <div className="flex items-center mb-4">
+            <GraduationCap className="w-6 h-6 mr-2" />
+            <h3 className="text-2xl font-semibold">Education</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
+              <h4 className="text-xl font-semibold">University of Houston - Main Campus</h4>
+              <p>Bachelor of Science in Computer Information Systems</p>
+              <p>Minor in Technology, Leadership, and Innovation Management</p>
+              <p>GPA: 3.53</p>
+              <p>Houston, Texas | December 2024</p>
+            </div>
+            <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
+              <h4 className="text-xl font-semibold mb-2">Relevant Coursework</h4>
+              <ul className="list-disc list-inside">
+                <li>Cloud Computing Architecture</li>
+                <li>Intrusion Detection and Incident Response</li>
+                <li>Enterprise Application Development</li>
+                <li>Organizational Leadership and Supervision</li>
+                <li>Fundamentals of Information Security</li>
+                <li>Information Systems Operations</li>
+              </ul>
+            </div>
           </div>
         </motion.div>
         <div>
-          <h3 className="text-2xl font-semibold mb-4">Experience</h3>
-          <div className="relative border-l-2 border-[#3E2723] pl-8 pb-8">
+          <div className="flex items-center mb-4">
+            <BriefcaseBusiness className="w-6 h-6 mr-2" />
+            <h3 className="text-2xl font-semibold">Experience</h3>
+          </div>
+          <div className="relative">
             {[
+              {
+                title: "Adair Kitchen",
+                position: "Lead Server / Cashier / Barista",
+                date: "February 2024 - Current",
+                location: "Houston, Texas",
+                responsibilities: [
+                  "Collaborated with team members to ensure efficient service, especially during peak times.",
+                  "Made 70+ espresso-based drinks per hour in a quick and efficient manner, while multitasking taking orders, cleaning, and checking inventory.",
+                  "Assisted with inventory management and notified management of any shortages and surpluses.",
+                  "Managed 250+ cash register operations per day, ensuring accurate transactions with speed and accuracy."
+                ]
+              },
               {
                 title: "Adair Kitchen",
                 position: "Lead Server / Cashier / Barista",
@@ -199,17 +242,44 @@ export function Portfolio() {
                   "Efficiently managed multiple tables while maintaining a high standard of service, ensuring timely delivery of courses and meeting the specific needs of each guest.",
                   "Provided high-quality service to thousands of guests per month in a fine dining environment, ensuring guest satisfaction and repeat business."
                 ]
+              },
+              {
+                title: "Willieʼs Grill and Icehouse",
+                position: "Server / Cashier / Bartender",
+                date: "February 2024 - Current",
+                location: "Houston, Texas",
+                responsibilities: [
+                  "Managed cash register operations, processing transactions with accuracy.",
+                  "Offered friendly and prompt customer service, responded to inquiries, and resolved complaints.",
+                  "Assisted with inventory management and notified management of any shortages.",
+                  "Collaborated with team members to ensure efficient service, especially during peak times."
+                ]
+              },
+              {
+                title: "University of Houston Student Financials Office",
+                position: "Customer Service Representative",
+                date: "September 2021 - August 2022",
+                location: "Houston, Texas",
+                responsibilities: [
+                  "Successfully identified and resolved at least 1,500 client issues per month through effective communication and coordination with other team members, resulting in a resolution rate of 95% or higher.",
+                  "Assisted at least 300 students and parents per month with account issues.",
+                  "Consistently achieved a positive overall customer service experience by maintaining a customer satisfaction rate of 98% or higher and receiving positive feedback and compliments from customers on at least 50% of interactions.",
+                ]
               }
-            ].map((job, index) => (
+            ].map((job, index, array) => (
               <motion.div
                 key={job.title}
-                className="mb-8 relative"
+                className="pl-8 pb-8 relative"
                 initial="hidden"
                 animate="visible"
                 variants={fadeInVariants}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="absolute -left-10 top-1/2 transform -translate-y-1/2 h-4 w-4 rounded-full bg-[#3E2723] shadow-md border-2 border-white"></div>
+                <div className="absolute left-0 top-0 bottom-0 w-px bg-[#3E2723]" style={{
+                  top: index === 0 ? '12px' : '0',
+                  bottom: index === array.length - 1 ? '12px' : '0'
+                }}></div>
+                <div className="absolute left-[-4px] top-3 w-2 h-2 rounded-full bg-[#3E2723] border-2 border-[#FFF8E1]"></div>
                 <div className="bg-[#3E2723] p-4 rounded-lg shadow-lg text-[#FFF8E1]">
                   <h4 className="text-xl font-semibold">{job.title}</h4>
                   <p className="text-lg">{job.position}</p>
@@ -229,7 +299,10 @@ export function Portfolio() {
     ),
     Portfolio: (
       <div>
-        <h2 className="text-2xl font-bold mb-4">Portfolio</h2>
+        <h2 className="text-3xl font-bold mb-1">Portfolio</h2>
+        <div className="flex items-center my-1 mt-0 mb-3">
+          <BarGraphic />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             {
@@ -258,7 +331,10 @@ export function Portfolio() {
     ),
     Contact: (
       <div className="text-[#3E2723]">
-        <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
+        <h2 className="text-3xl font-bold mb-1">Contact Me</h2>
+        <div className="flex items-center my-1 mt-0 mb-2">
+          <BarGraphic />
+        </div>
         <motion.div
           initial="hidden"
           animate="visible"
@@ -349,21 +425,21 @@ export function Portfolio() {
       <div className="max-w-6xl mx-auto space-y-4 flex flex-col relative z-10">
         {/* Header */}
         <header ref={headerRef} className="bg-[#C4A484] p-6 rounded-lg shadow-lg">
-          <div className="flex flex-col md:flex-row items-center md:items-start md:justify-between">
-            <div className="flex flex-col items-center md:flex-row md:items-start">
+          <div className="flex flex-col md:flex-row items-center md:items-center md:justify-between">
+            <div className="flex flex-col md:flex-row items-center md:items-center">
               <img
                 src="/images/profile.jpg"
                 alt="Profile"
-                className="md:w-40 md:h-40  w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-6"
+                className="md:w-40 md:h-40 w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-6"
               />
-              <div className="text-center md:text-left">
+              <div className="text-center md:text-left flex flex-col justify-center">
                 <h1 className="text-3xl font-bold">Elian Gutierrez</h1>
                 <p className="text-[#3E2723]">DevOps | SRE | Cloud Engineer</p>
                 <div className="flex justify-center md:justify-start space-x-4 mt-2">
-                  <a href="https://www.linkedin.com/in/elian-gutierrez-795088264/"  target="_blank" rel="noopener noreferrer" className="text-[#3E2723] hover:text-[#5D4037]" title="Linkedin">
+                  <a href="https://www.linkedin.com/in/elian-gutierrez-795088264/" target="_blank" rel="noopener noreferrer" className="text-[#3E2723] hover:text-[#5D4037]" title="Linkedin">
                     <Linkedin className="w-5 h-5" />
                   </a>
-                  <a href="https://github.com/Diechewood"  target="_blank" rel="noopener noreferrer" className="text-[#3E2723] hover:text-[#5D4037]" title="GitHub">
+                  <a href="https://github.com/Diechewood" target="_blank" rel="noopener noreferrer" className="text-[#3E2723] hover:text-[#5D4037]" title="GitHub">
                     <Github className="w-5 h-5" />
                   </a>
                 </div>
@@ -374,11 +450,11 @@ export function Portfolio() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-[#3E2723] text-sm font-bold">EMAIL</p>
-                    <a href="mailto:EzTz721@gmail.com"  target="_blank" rel="noopener noreferrer" className="text-[#FFF8E1] text-sm hover:underline">EzTz721@gmail.com</a>
+                    <a href="mailto:EzTz721@gmail.com" target="_blank" rel="noopener noreferrer" className="text-[#FFF8E1] text-sm hover:underline">EzTz721@gmail.com</a>
                   </div>
                   <div>
                     <p className="text-[#3E2723] text-sm font-bold">CV</p>
-                    <a href="#"  target="_blank" rel="noopener noreferrer" className="text-[#FFF8E1] text-sm hover:underline flex items-center justify-center md:justify-end">
+                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#FFF8E1] text-sm hover:underline flex items-center justify-center md:justify-end">
                       Download <Download className="w-4 h-4 ml-1" />
                     </a>
                   </div>
