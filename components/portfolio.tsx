@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin, Cloud, LockKeyhole, Infinity, ServerCog, Mail, BriefcaseBusiness, GraduationCap } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 interface AnimatedTextProps {
   text: string
@@ -52,12 +53,14 @@ const BackgroundSVG = () => (
   </svg>
 )
 
+type TabType = 'About' | 'Resume' | 'Portfolio' | 'Contact';
+
 export function Portfolio() {
-  const [activeTab, setActiveTab] = useState('About')
+  const [activeTab, setActiveTab] = useState<TabType>('About')
   const [stickyTop, setStickyTop] = useState(0)
   const headerRef = useRef<HTMLElement>(null)
 
-  const tabs = ['About', 'Resume', 'Portfolio', 'Contact']
+  const tabs: TabType[] = ['About', 'Resume', 'Portfolio', 'Contact']
 
   const fadeInVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -78,7 +81,7 @@ export function Portfolio() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const content = {
+  const content: Record<TabType, JSX.Element> = {
     About: (
       <div className="text-[#3E2723]">
         <h2 className="text-3xl font-bold mb-1">About Me</h2>
@@ -88,16 +91,15 @@ export function Portfolio() {
           variants={fadeInVariants}
           transition={{ duration: 0.5 }}
         >
-
           <div className="mb-4">
             <AnimatedText 
-              text="Hello! I’m Elian Gutierrez, a cloud computing enthusiast with a passion for cloud security. Currently, I am pursuing a Bachelor of Science in Computer Information Systems from the University of Houston, where I have honed my skills in cloud architecture, security, and application development. With a strong academic foundation, including relevant coursework like Cloud Computing Architecture and Enterprise Application Development, I’m on a mission to secure the cloud and help organizations protect their data and infrastructure."
+              text="Hello! I&apos;m Elian Gutierrez, a cloud computing enthusiast with a passion for cloud security. Currently, I am pursuing a Bachelor of Science in Computer Information Systems from the University of Houston, where I have honed my skills in cloud architecture, security, and application development. With a strong academic foundation, including relevant coursework like Cloud Computing Architecture and Enterprise Application Development, I&apos;m on a mission to secure the cloud and help organizations protect their data and infrastructure."
               animationKey={`${activeTab}-1`}
             />
           </div>
           <div className="mb-4">
             <AnimatedText 
-              text="In my recent projects, I’ve focused on leveraging AWS to build secure and scalable solutions. One of my key projects, EZSender, showcases my ability to integrate AWS services such as Lambda, S3, Cognito, and API Gateway to build a robust mass email campaign system. This project allowed me to explore key security concerns around user authentication and secure data transmission, reinforcing my commitment to cloud security best practices."
+              text="In my recent projects, I&apos;ve focused on leveraging AWS to build secure and scalable solutions. One of my key projects, EZSender, showcases my ability to integrate AWS services such as Lambda, S3, Cognito, and API Gateway to build a robust mass email campaign system. This project allowed me to explore key security concerns around user authentication and secure data transmission, reinforcing my commitment to cloud security best practices."
               animationKey={`${activeTab}-2`}
             />
           </div>
@@ -110,17 +112,17 @@ export function Portfolio() {
           <div className="mb-4">
             <AnimatedText 
               text="Beyond technical skills, I thrive in collaborative environments, having worked on teams where I contributed to developing cloud-based applications and consulted on information system security. I believe that communication and teamwork are essential in driving innovation and delivering secure solutions."
-              animationKey={`${activeTab}-3`}
+              animationKey={`${activeTab}-4`}
             />
           </div>
           <div className="mb-4">
             <AnimatedText 
-              text="As I look to the future, I’m eager to contribute to the field of cloud security, helping organizations safeguard their assets in the cloud. Whether it’s architecting secure systems or mitigating vulnerabilities, I’m ready to take on new challenges and make an impact."
-              animationKey={`${activeTab}-3`}
+              text="As I look to the future, I&apos;m eager to contribute to the field of cloud security, helping organizations safeguard their assets in the cloud. Whether it&apos;s architecting secure systems or mitigating vulnerabilities, I&apos;m ready to take on new challenges and make an impact."
+              animationKey={`${activeTab}-5`}
             />
           </div>
         </motion.div>
-        <h3 className="text-2xl font-semibold mb-4 mt-8">What I'm Doing</h3>
+        <h3 className="text-2xl font-semibold mb-4 mt-8">What I&apos;m Doing</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
             {
@@ -130,7 +132,7 @@ export function Portfolio() {
             },
             {
               title: "Cloud Engineer",
-              description: "Equipped with abilities to design, secure and maintenance of an organization's cloud-based infrastructure and application",
+              description: "Equipped with abilities to design, secure and maintenance of an organization&apos;s cloud-based infrastructure and application",
               icon: <Cloud className="w-12 h-12 mb-4" />
             },
             {
@@ -207,18 +209,6 @@ export function Portfolio() {
           </div>
           <div className="relative">
             {[
-              {
-                title: "Adair Kitchen",
-                position: "Lead Server / Cashier / Barista",
-                date: "February 2024 - Current",
-                location: "Houston, Texas",
-                responsibilities: [
-                  "Collaborated with team members to ensure efficient service, especially during peak times.",
-                  "Made 70+ espresso-based drinks per hour in a quick and efficient manner, while multitasking taking orders, cleaning, and checking inventory.",
-                  "Assisted with inventory management and notified management of any shortages and surpluses.",
-                  "Managed 250+ cash register operations per day, ensuring accurate transactions with speed and accuracy."
-                ]
-              },
               {
                 title: "Adair Kitchen",
                 position: "Lead Server / Cashier / Barista",
@@ -359,10 +349,11 @@ export function Portfolio() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="relative w-full h-48">
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  layout="fill"
+                  objectFit="cover"
                 />
                 <div className="absolute top-2 left-2 bg-[#FF9800] text-[#3E2723] text-xs font-bold px-2 py-1 rounded">
                   {project.category}
@@ -464,7 +455,7 @@ export function Portfolio() {
     )
   }
 
-  const getTabIcon = (tab: string) => {
+  const getTabIcon = (tab: TabType) => {
     switch (tab) {
       case 'About':
         return <UserRound className="w-6 h-6 mb-1" />
@@ -474,8 +465,6 @@ export function Portfolio() {
         return <Wrench className="w-6 h-6 mb-1" />
       case 'Contact':
         return <MessageSquareMore className="w-6 h-6 mb-1" />
-      default:
-        return null
     }
   }
 
@@ -484,55 +473,55 @@ export function Portfolio() {
       <BackgroundSVG />
       <div className="max-w-6xl mx-auto space-y-4 flex flex-col relative z-10">
         {/* Updated Header */}
-      <header ref={headerRef} className="bg-[#3E2723] p-6 rounded-lg shadow-lg">
-        <div className="flex flex-col sm:flex-row items-center lg:items-start justify-between">
-          <div className="flex flex-col sm:flex-row items-center sm:items-center mb-6 lg:mb-0">
-            <div className="mb-4 sm:mb-0 sm:mr-6">
-              <img
-                src="/images/profile.jpg"
-                alt="Profile"
-                width={160}
-                height={160}
-                className="rounded-full border-4 border-[#C4A484]"
-              />
-            </div>
-            <div className="text-center sm:text-left">
-              <h1 className="text-3xl font-bold text-[#FFF8E1]">Elian Gutierrez</h1>
-              <p className="text-[#C4A484]">DevOps | SRE | Cloud Engineer</p>
-              <div className="flex justify-center sm:justify-start space-x-4 mt-2">
-                <a href="https://www.linkedin.com/in/elian-gutierrez-795088264/" target="_blank" rel="noopener noreferrer" className="text-[#C4A484] hover:text-[#FFF8E1]">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a href="https://github.com/Diechewood" target="_blank" rel="noopener noreferrer" className="text-[#C4A484] hover:text-[#FFF8E1]">
-                  <Github className="w-5 h-5" />
-                </a>
+        <header ref={headerRef} className="bg-[#3E2723] p-6 rounded-lg shadow-lg">
+          <div className="flex flex-col sm:flex-row items-center lg:items-start justify-between">
+            <div className="flex flex-col sm:flex-row items-center sm:items-center mb-6 lg:mb-0">
+              <div className="mb-4 sm:mb-0 sm:mr-6">
+                <Image
+                  src="/images/profile.jpg"
+                  alt="Profile"
+                  width={160}
+                  height={160}
+                  className="rounded-full border-4 border-[#C4A484]"
+                />
               </div>
-            </div>
-          </div>
-          <div className="lg:w-1/2 flex items-center justify-center">
-            <div className="bg-[#3E2723] p-4 rounded-lg max-w-xs w-full">
-              <div className="grid grid-cols-2 gap-4 text-[#FFF8E1]">
-                <div>
-                  <p className="text-[#C4A484] text-sm font-bold">EMAIL</p>
-                  <a href="mailto:EzTz721@gmail.com" className="text-sm hover:underline">EzTz721@gmail.com</a>
-                </div>
-                <div>
-                  <p className="text-[#C4A484] text-sm font-bold">CV</p>
-                  <a href="#" className="text-sm hover:underline flex items-center">
-                    Download <Download className="w-4 h-4 ml-1" />
+              <div className="text-center sm:text-left">
+                <h1 className="text-3xl font-bold text-[#FFF8E1]">Elian Gutierrez</h1>
+                <p className="text-[#C4A484]">DevOps | SRE | Cloud Engineer</p>
+                <div className="flex justify-center sm:justify-start space-x-4 mt-2">
+                  <a href="https://www.linkedin.com/in/elian-gutierrez-795088264/" target="_blank" rel="noopener noreferrer" className="text-[#C4A484] hover:text-[#FFF8E1]">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a href="https://github.com/Diechewood" target="_blank" rel="noopener noreferrer" className="text-[#C4A484] hover:text-[#FFF8E1]">
+                    <Github className="w-5 h-5" />
                   </a>
                 </div>
-                <div className="col-span-2">
-                  <p className="text-[#C4A484] text-sm font-bold">LOCATION</p>
-                  <p className="text-sm flex items-center">
-                    Houston, Texas <MapPin className="w-4 h-4 ml-1" />
-                  </p>
+              </div>
+            </div>
+            <div className="lg:w-1/2 flex items-center justify-center">
+              <div className="bg-[#3E2723] p-4 rounded-lg max-w-xs w-full">
+                <div className="grid grid-cols-2 gap-4 text-[#FFF8E1]">
+                  <div>
+                    <p className="text-[#C4A484] text-sm font-bold">EMAIL</p>
+                    <a href="mailto:EzTz721@gmail.com" className="text-sm hover:underline">EzTz721@gmail.com</a>
+                  </div>
+                  <div>
+                    <p className="text-[#C4A484] text-sm font-bold">CV</p>
+                    <a href="#" className="text-sm hover:underline flex items-center">
+                      Download <Download className="w-4 h-4 ml-1" />
+                    </a>
+                  </div>
+                  <div className="col-span-2">
+                    <p className="text-[#C4A484] text-sm font-bold">LOCATION</p>
+                    <p className="text-sm flex items-center">
+                      Houston, Texas <MapPin className="w-4 h-4 ml-1" />
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
         
         {/* Main content */}
         <div className="flex flex-col md:flex-row gap-4">
