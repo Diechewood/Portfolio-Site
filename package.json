@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npm dedupe"    
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
@@ -28,5 +29,11 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  }
+  },
+  "resolutions": {
+  "rimraf": "^4.0.0",
+  "@humanwhocodes/config-array": "@eslint/config-array",
+  "@humanwhocodes/object-schema": "@eslint/object-schema",
+  "glob": "^9.0.0"
+}
 }
