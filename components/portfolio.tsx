@@ -123,32 +123,32 @@ export function Portfolio() {
           </div>
         </motion.div>
         <h3 className="text-2xl font-semibold mb-4 mt-8">What I&apos;m Doing</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
           {[
             {
               title: "Cloud Security",
-              description: "I enjoy learning software development either for personal or specific purposes",
+              description: "Building secure, resilient cloud environments to protect data and ensure compliance.",
               icon: <LockKeyhole className="w-12 h-12 mb-4" />
             },
             {
               title: "Cloud Engineer",
-              description: "Equipped with abilities to design, secure and maintenance of an organization&apos;s cloud-based infrastructure and application",
+              description: "Designing and maintaining scalable, secure cloud infrastructures for organizational needs.",
               icon: <Cloud className="w-12 h-12 mb-4" />
             },
             {
               title: "DevOps",
-              description: "I enjoy to improve the speed and quality of delivery, automate and achieve CICD",
+              description: "Streamlining development and operations for fast, reliable, and automated CI/CD software delivery.",
               icon: <Infinity className="w-12 h-12 mb-4" />
             },
             {
               title: "SRE",
-              description: "I curious the processes and tools that ensure the scalability, reliability and availability of software systems",
+              description: "Ensuring software systems' scalability, reliability, and uptime through robust processes and monitoring.",
               icon: <ServerCog className="w-12 h-12 mb-4" />
             }
           ].map((item, index) => (
             <motion.div
               key={item.title}
-              className="bg-[#3E2723] p-6 rounded-lg shadow-lg text-[#FFF8E1]"
+              className="p-6 rounded-lg shadow-lg text-[#FFF8E1] bg-gradient-to-b from-[#5D4037] via-[#3E2723] to-[#5D4037]"
               initial="hidden"
               animate="visible"
               variants={fadeInVariants}
@@ -280,7 +280,7 @@ export function Portfolio() {
                   bottom: index === array.length - 1 ? '12px' : '0'
                 }}></div>
                 <div className="absolute left-[-4px] top-3 w-2 h-2 rounded-full bg-[#3E2723] border-2 border-[#FFF8E1]"></div>
-                <div className="bg-[#3E2723] p-4 rounded-lg shadow-lg text-[#FFF8E1]">
+                <div className="bg-gradient-to-b from-[#5D4037] via-[#3E2723] to-[#5D4037] p-4 rounded-lg shadow-lg text-[#FFF8E1]">
                   <h4 className="text-xl font-semibold">{job.title}</h4>
                   <p className="text-lg">{job.position}</p>
                   <p className="text-[#C4A484]">{job.date}</p>
@@ -325,8 +325,8 @@ export function Portfolio() {
               image: "/images/portfolio-site.png",
               category: "Project",
               tags: [
-                { name: "GitHub", link: "https://github.com/yourusername/portfolio" },
-                { name: "Website", link: "https://yourportfolio.com" }
+                { name: "GitHub", link: "https://github.com/Diechewood/portfolio-site" },
+                { name: "Website", link: "https://eliangtz.com" }
               ]
             },
             {
@@ -335,7 +335,7 @@ export function Portfolio() {
               category: "Project",
               tags: [
                 { name: "GitHub", link: "https://github.com/Diechewood/speedystats" },
-                { name: "Documentation", link: "https://github.com/yourusername/speedystats" },
+                { name: "Documentation", link: "https://github.com/Diechewood/speedystats" },
                 { name: "Website", link: "https://speedystats-demo.com" }
               ]
             },
@@ -473,7 +473,7 @@ export function Portfolio() {
       <BackgroundSVG />
       <div className="max-w-6xl mx-auto space-y-4 flex flex-col relative z-10">
         {/* Updated Header */}
-        <header ref={headerRef} className="bg-[#3E2723] p-6 rounded-lg shadow-lg">
+        <header ref={headerRef} className="bg-[#3E2723] p-6 rounded-lg shadow-lg border-2 border-white">
           <div className="flex flex-col sm:flex-row items-center lg:items-start justify-between">
             <div className="flex flex-col sm:flex-row items-center sm:items-center mb-6 lg:mb-0">
               <div className="mb-4 sm:mb-0 sm:mr-6">
@@ -527,7 +527,7 @@ export function Portfolio() {
         <div className="flex flex-col md:flex-row gap-4">
           {/* Tab switcher */}
           <nav 
-            className="bg-[#C4A484] p-4 rounded-lg shadow-lg w-full md:w-auto min-w-32 top-0 z-10"
+            className="bg-[#C4A484] p-4 rounded-lg shadow-lg w-full md:w-auto min-w-32 top-0 z-10 border-2 border-[#3E2723]"
             style={{
               position: 'sticky',
               top: stickyTop,
@@ -555,7 +555,7 @@ export function Portfolio() {
           </nav>
 
           {/* Content area */}
-          <main className="flex-grow bg-[#C4A484] p-6 rounded-lg shadow-lg">
+          <main className="flex-grow bg-[#C4A484] p-6 rounded-lg shadow-lg border-2 border-[#3E2723]">
             {content[activeTab]}
           </main>
         </div>
