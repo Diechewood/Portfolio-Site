@@ -174,9 +174,9 @@ export function Portfolio() {
           variants={fadeInVariants}
           transition={{ duration: 0.5 }}
         >
-        <div className="flex items-center my-1 mt-0 mb-1">
-          <BarGraphic />
-        </div>
+          <div className="flex items-center my-1 mt-0 mb-1">
+            <BarGraphic />
+          </div>
           <div className="flex items-center mb-4">
             <GraduationCap className="w-6 h-6 mr-2" />
             <h3 className="text-2xl font-semibold">Education</h3>
@@ -202,6 +202,53 @@ export function Portfolio() {
             </div>
           </div>
         </motion.div>
+    
+        {/* Skills Section */}
+        <motion.div
+          className="mb-8"
+          initial="hidden"
+          animate="visible"
+          variants={fadeInVariants}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex items-center mb-4">
+            <Wrench className="w-6 h-6 mr-2" />
+            <h3 className="text-2xl font-semibold">Skills</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
+              <h4 className="text-xl font-semibold mb-2">Cloud Technologies</h4>
+              <ul className="list-disc list-inside">
+                <li>Amazon Web Services (AWS)</li>
+                <li>Microsoft Azure</li>
+                <li>Google Cloud Platform (GCP)</li>
+                <li>Kubernetes</li>
+                <li>Docker</li>
+              </ul>
+            </div>
+            <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
+              <h4 className="text-xl font-semibold mb-2">Programming Languages</h4>
+              <ul className="list-disc list-inside">
+                <li>Python</li>
+                <li>JavaScript/TypeScript</li>
+                <li>Go</li>
+                <li>Java</li>
+                <li>Bash scripting</li>
+              </ul>
+            </div>
+            <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
+              <h4 className="text-xl font-semibold mb-2">DevOps & Tools</h4>
+              <ul className="list-disc list-inside">
+                <li>CI/CD (Jenkins, GitLab CI)</li>
+                <li>Infrastructure as Code (Terraform, CloudFormation)</li>
+                <li>Monitoring (Prometheus, Grafana)</li>
+                <li>Version Control (Git)</li>
+                <li>Agile methodologies</li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+    
         <div>
           <div className="flex items-center mb-4">
             <BriefcaseBusiness className="w-6 h-6 mr-2" />
@@ -473,7 +520,7 @@ export function Portfolio() {
       <BackgroundSVG />
       <div className="max-w-6xl mx-auto space-y-4 flex flex-col relative z-10">
         {/* Updated Header */}
-        <header ref={headerRef} className="bg-[#3E2723] p-6 rounded-lg shadow-lg border-2 border-white">
+        <header ref={headerRef} className="bg-[#3E2723] p-6 rounded-lg shadow-lg border-2 border-[#C4A484]">
           <div className="flex flex-col sm:flex-row items-center lg:items-start justify-between">
             <div className="flex flex-col sm:flex-row items-center sm:items-center mb-6 lg:mb-0">
               <div className="mb-4 sm:mb-0 sm:mr-6">
