@@ -296,7 +296,7 @@ export function Portfolio() {
                 ]
               },
               {
-                title: "Willie&apos;s Grill and Icehouse",
+                title: "Willies Grill and Icehouse",
                 position: "Server / Cashier / Bartender",
                 date: "August 2022 - June 2023",
                 location: "Houston, Texas",
