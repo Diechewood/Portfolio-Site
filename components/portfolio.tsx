@@ -1,9 +1,11 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin, Cloud, LockKeyhole, Infinity, ServerCog, Mail, BriefcaseBusiness, GraduationCap } from 'lucide-react'
+import { Brain, MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin, Cloud, LockKeyhole, Infinity, ServerCog, Mail, BriefcaseBusiness, GraduationCap, ChevronRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useParams, usePathname } from 'next/navigation'
+import ProjectDocumentation from '../app/docs/[project]/ProjectDocumentation'
 
 interface AnimatedTextProps {
   text: string
@@ -58,7 +60,10 @@ type TabType = 'About' | 'Resume' | 'Portfolio' | 'Contact';
 export function Portfolio() {
   const [activeTab, setActiveTab] = useState<TabType>('About')
   const [stickyTop, setStickyTop] = useState(0)
+  const [selectedProject, setSelectedProject] = useState<string | null>(null)
   const headerRef = useRef<HTMLElement>(null)
+  const params = useParams()
+  const pathname = usePathname()
 
   const tabs: TabType[] = ['About', 'Resume', 'Portfolio', 'Contact']
 
@@ -80,6 +85,18 @@ export function Portfolio() {
 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    if (pathname.startsWith('/docs/')) {
+      setActiveTab('Portfolio')
+      setSelectedProject(params.project as string)
+    }
+  }, [pathname, params])
+
+  const handleDocumentationClick = (projectSlug: string) => {
+    setActiveTab('Portfolio')
+    setSelectedProject(projectSlug)
+  }
 
   const content: Record<TabType, JSX.Element> = {
     About: (
@@ -131,19 +148,19 @@ export function Portfolio() {
               icon: <LockKeyhole className="w-12 h-12 mb-4" />
             },
             {
-              title: "Cloud Engineer",
-              description: "Designing and maintaining scalable, secure cloud infrastructures for organizational needs.",
+              title: "Client-Focused Problem Solving",
+              description: "Delivering cloud-based solutions and resolving technical issues, ensuring client satisfaction and smooth operations.",
               icon: <Cloud className="w-12 h-12 mb-4" />
+            },
+            {
+              title: "Infrastructure as Code (IaC)",
+              description: "Automating cloud infrastructure with Terraform and CloudFormation to ensure scalability, efficiency, and consistency.",
+              icon: <ServerCog className="w-12 h-12 mb-4" />
             },
             {
               title: "DevOps",
               description: "Streamlining development and operations for fast, reliable, and automated CI/CD software delivery.",
               icon: <Infinity className="w-12 h-12 mb-4" />
-            },
-            {
-              title: "SRE",
-              description: "Ensuring software systems' scalability, reliability, and uptime through robust processes and monitoring.",
-              icon: <ServerCog className="w-12 h-12 mb-4" />
             }
           ].map((item, index) => (
             <motion.div
@@ -165,7 +182,7 @@ export function Portfolio() {
       </div>
     ),
     Resume: (
-      <div className="text-[#3E2723]">
+      <div className="">
         <h2 className="text-3xl font-bold mb-1">Resume</h2>
         <motion.div
           className="mb-8"
@@ -212,15 +229,14 @@ export function Portfolio() {
           transition={{ duration: 0.5 }}
         >
           <div className="flex items-center mb-4">
-            <Wrench className="w-6 h-6 mr-2" />
+            <Brain className="w-6 h-6 mr-2" />
             <h3 className="text-2xl font-semibold">Skills</h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
             <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
               <h4 className="text-xl font-semibold mb-2">Cloud Technologies</h4>
               <ul className="list-disc list-inside">
                 <li>Amazon Web Services (AWS)</li>
-                <li>Microsoft Azure</li>
                 <li>Google Cloud Platform (GCP)</li>
                 <li>Kubernetes</li>
                 <li>Docker</li>
@@ -230,8 +246,7 @@ export function Portfolio() {
               <h4 className="text-xl font-semibold mb-2">Programming Languages</h4>
               <ul className="list-disc list-inside">
                 <li>Python</li>
-                <li>JavaScript/TypeScript</li>
-                <li>Go</li>
+                <li>JavaScript / TypeScript</li>
                 <li>Java</li>
                 <li>Bash scripting</li>
               </ul>
@@ -239,9 +254,8 @@ export function Portfolio() {
             <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
               <h4 className="text-xl font-semibold mb-2">DevOps & Tools</h4>
               <ul className="list-disc list-inside">
-                <li>CI/CD (Jenkins, GitLab CI)</li>
-                <li>Infrastructure as Code (Terraform, CloudFormation)</li>
-                <li>Monitoring (Prometheus, Grafana)</li>
+                <li>CI/CD (GitHub Actions)</li>
+                <li>Infrastructure as Code (Terraform / CloudFormation)</li>
                 <li>Version Control (Git)</li>
                 <li>Agile methodologies</li>
               </ul>
@@ -257,6 +271,19 @@ export function Portfolio() {
           <div className="relative">
             {[
               {
+                "title": "PostScript",
+                "position": "Fine Dining Server",
+                "date": "June 2023 - Present",
+                "location": "Houston, Texas",
+                "responsibilities": [
+                  "Delivered exceptional customer service by identifying guest needs and providing tailored solutions, ensuring high satisfaction levels.",
+                  "Efficiently managed multiple tasks during peak service, prioritizing and organizing workflow for smooth operations.",
+                  "Collaborated with team members to troubleshoot service issues, resolve conflicts, and maintain high standards of service quality.",
+                  "Maintained detailed records of guest preferences, contributing to a personalized and data-driven customer experience.",
+                  "Adapted to a fast-paced environment, applying problem-solving skills to anticipate and address guest concerns in real-time."
+                ]
+              },
+              {
                 title: "Adair Kitchen",
                 position: "Lead Server / Cashier / Barista",
                 date: "February 2024 - Current",
@@ -269,31 +296,9 @@ export function Portfolio() {
                 ]
               },
               {
-                title: "Jinya Ramen Bar",
-                position: "Server",
-                date: "October 2023 - April 2024",
-                location: "Katy, Texas",
-                responsibilities: [
-                  "Mastered high-volume service, enhancing guest experience through expert menu knowledge and upselling.",
-                  "Proficient in assisting guests with menu selections, offering detailed explanations of food options, and recommending cocktails and wines.",
-                  "Handled 100+ guest orders per day, with high quality service ensuring all standards are met and exceeded."
-                ]
-              },
-              {
-                title: "Dove Canyon Golf Club",
-                position: "Fine Dining Server",
-                date: "Seasonal - April 2023 - August 2023",
-                location: "Mission Viejo, California",
-                responsibilities: [
-                  "Possessed extensive knowledge of correct wine pairings, spirits, and cocktails, providing expert recommendations and service.",
-                  "Efficiently managed multiple tables while maintaining a high standard of service, ensuring timely delivery of courses and meeting the specific needs of each guest.",
-                  "Provided high-quality service to thousands of guests per month in a fine dining environment, ensuring guest satisfaction and repeat business."
-                ]
-              },
-              {
-                title: "Willieʼs Grill and Icehouse",
+                title: "Willie&apos;s Grill and Icehouse",
                 position: "Server / Cashier / Bartender",
-                date: "February 2024 - Current",
+                date: "August 2022 - June 2023",
                 location: "Houston, Texas",
                 responsibilities: [
                   "Managed cash register operations, processing transactions with accuracy.",
@@ -346,85 +351,112 @@ export function Portfolio() {
     ),
     Portfolio: (
       <div>
-        <h2 className="text-3xl font-bold mb-6">Portfolio</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              title: "Image Suite",
-              image: "/images/image-suite.png",
-              category: "Project",
-              tags: [
-                { name: "GitHub", link: "https://github.com/Diechewood/image-suite" },
-                { name: "Website", link: "https://image-suite-demo.com" }
-              ]
-            },
-            {
-              title: "EZSender",
-              image: "/images/ezsender.png",
-              category: "Project",
-              tags: [
-                { name: "GitHub", link: "https://github.com/Diechewood/EZSender" },
-                { name: "Website", link: "https://ezsender-demo.com" }
-              ]
-            },
-            {
-              title: "Portfolio Site",
-              image: "/images/portfolio-site.png",
-              category: "Project",
-              tags: [
-                { name: "GitHub", link: "https://github.com/Diechewood/portfolio-site" },
-                { name: "Website", link: "https://eliangtz.com" }
-              ]
-            },
-            {
-              title: "SpeedyStats",
-              image: "/images/speedystats.png",
-              category: "Project",
-              tags: [
-                { name: "GitHub", link: "https://github.com/Diechewood/speedystats" },
-                { name: "Documentation", link: "https://github.com/Diechewood/speedystats" },
-                { name: "Website", link: "https://speedystats-demo.com" }
-              ]
-            },
-          ].map((project, index) => (
-            <motion.div
-              key={project.title}
-              className="flex flex-col relative overflow-hidden rounded-lg shadow-lg bg-[#3E2723]"
-              initial="hidden"
-              animate="visible"
-              variants={fadeInVariants}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <div className="relative w-full h-48">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  layout="fill"
-                  objectFit="cover"
-                />
-                <div className="absolute top-2 left-2 bg-[#FF9800] text-[#3E2723] text-xs font-bold px-2 py-1 rounded">
-                  {project.category}
-                </div>
-              </div>
-              <div className="p-4 flex-grow">
-                <h3 className="text-lg font-semibold text-[#FFF8E1] mb-2">{project.title}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <a
-                      key={tag.name}
-                      href={tag.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-[#C4A484] text-[#3E2723] text-xs font-bold px-2 py-1 rounded hover:bg-[#E6DCC8] transition-colors duration-300"
-                    >
-                      {tag.name}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {selectedProject ? (
+          <div>
+            <div className="flex items-center mb-4">
+              <button onClick={() => setSelectedProject(null)} className="text-2xl font-bold mb-1 text-[#3E2723] hover:underline flex items-center">
+                <ChevronRight className="w-4 h-4 mr-2 transform rotate-180" />
+                Back to Portfolio
+              </button>
+            </div>
+            <ProjectDocumentation project={selectedProject.toLowerCase().replace(/\s+/g, '-')} />
+          </div>
+        ) : (
+          <div>
+            <h2 className="text-3xl font-bold mb-6 text-[#3E2723]">Portfolio</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  title: "Image Suite",
+                  image: "/images/image-suite.png",
+                  category: "Project",
+                  tags: [
+                    { name: "GitHub", link: "https://github.com/Diechewood/image-suite" },
+                    { name: "Website", link: "https://image-suite-demo.com" },
+                    { name: "Documentation", action: () => handleDocumentationClick("image-suite") }
+                  ]
+                },
+                {
+                  title: "EZSender",
+                  image: "/images/ezsender.png",
+                  category: "Project",
+                  tags: [
+                    { name: "GitHub", link: "https://github.com/Diechewood/EZSender" },
+                    { name: "Website", link: "https://ezsender-demo.com" },
+                    { name: "Documentation", action: () => handleDocumentationClick("ezsender") }
+                  ]
+                },
+                {
+                  title: "Portfolio Site",
+                  image: "/images/portfolio-site.png",
+                  category: "Project",
+                  tags: [
+                    { name: "GitHub", link: "https://github.com/Diechewood/portfolio-site" },
+                    { name: "Website", link: "https://eliangtz.com" },
+                    { name: "Documentation", action: () => handleDocumentationClick("portfolio-site") }
+                  ]
+                },
+                {
+                  title: "SpeedyStats",
+                  image: "/images/speedystats.png",
+                  category: "Project",
+                  tags: [
+                    { name: "GitHub", link: "https://github.com/Diechewood/speedystats" },
+                    { name: "Website", link: "https://speedystats-demo.com" },
+                    { name: "Documentation", action: () => handleDocumentationClick("speedystats") }
+                  ]
+                },
+              ].map((project, index) => (
+                <motion.div
+                  key={project.title}
+                  className="flex flex-col relative overflow-hidden rounded-lg shadow-lg bg-[#3E2723]"
+                  initial="hidden"
+                  animate="visible"
+                  variants={fadeInVariants}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <div className="relative w-full h-48">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                    <div className="absolute top-2 left-2 bg-[#FF9800] text-[#3E2723] text-xs font-bold px-2 py-1 rounded">
+                      {project.category}
+                    </div>
+                  </div>
+                  <div className="p-4 flex-grow">
+                    <h3 className="text-lg font-semibold text-[#FFF8E1] mb-2">{project.title}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        tag.name === "Documentation" ? (
+                          <button
+                            key={tag.name}
+                            onClick={tag.action}
+                            className="bg-[#C4A484] text-[#3E2723] text-xs font-bold px-2 py-1 rounded hover:bg-[#E6DCC8] transition-colors duration-300"
+                          >
+                            {tag.name}
+                          </button>
+                        ) : (
+                          <a
+                            key={tag.name}
+                            href={tag.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-[#C4A484] text-[#3E2723] text-xs font-bold px-2 py-1 rounded hover:bg-[#E6DCC8] transition-colors duration-300"
+                          >
+                            {tag.name}
+                          </a>
+                        )
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     ),
     Contact: (
@@ -534,7 +566,7 @@ export function Portfolio() {
               </div>
               <div className="text-center sm:text-left">
                 <h1 className="text-3xl font-bold text-[#FFF8E1]">Elian Gutierrez</h1>
-                <p className="text-[#C4A484]">DevOps | SRE | Cloud Engineer</p>
+                <p className="text-[#C4A484]">DevOps | Cloud Computing Specialist</p>
                 <div className="flex justify-center sm:justify-start space-x-4 mt-2">
                   <a href="https://www.linkedin.com/in/elian-gutierrez-795088264/" target="_blank" rel="noopener noreferrer" className="text-[#C4A484] hover:text-[#FFF8E1]">
                     <Linkedin className="w-5 h-5" />
