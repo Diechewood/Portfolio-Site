@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Brain, MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin, Cloud, LockKeyhole, Infinity, ServerCog, Mail, BriefcaseBusiness, GraduationCap, ChevronRight } from 'lucide-react'
+import { Globe, FileText, Brain, MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin, Cloud, LockKeyhole, Infinity, ServerCog, Mail, BriefcaseBusiness, GraduationCap, ChevronRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useParams, usePathname } from 'next/navigation'
@@ -359,63 +359,71 @@ export function Portfolio() {
                 Back to Portfolio
               </button>
             </div>
-            <ProjectDocumentation project={selectedProject.toLowerCase().replace(/\s+/g, '-')} />
+            <ProjectDocumentation project={selectedProject} />
           </div>
         ) : (
           <div>
             <h2 className="text-3xl font-bold mb-6 text-[#3E2723]">Portfolio</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="space-y-6">
               {[
                 {
                   title: "Image Suite",
                   image: "/images/image-suite.png",
                   category: "Project",
-                  tags: [
-                    { name: "GitHub", link: "https://github.com/Diechewood/image-suite" },
-                    { name: "Website", link: "https://image-suite-demo.com" },
-                    { name: "Documentation", action: () => handleDocumentationClick("image-suite") }
+                  description: "A comprehensive image processing and management tool built with React and AWS services.",
+                  technologies: ["React", "Node.js", "AWS S3", "DynamoDB", "Lambda"],
+                  links: [
+                    { name: "GitHub", url: "https://github.com/Diechewood/image-suite", icon: <Github className="w-4 h-4 mr-2" /> },
+                    { name: "Website", url: "https://image-suite-demo.com", icon: <Globe className="w-4 h-4 mr-2" /> },
+                    { name: "Documentation", action: () => handleDocumentationClick("image-suite"), icon: <FileText className="w-4 h-4 mr-2" /> }
                   ]
                 },
                 {
                   title: "EZSender",
                   image: "/images/ezsender.png",
                   category: "Project",
-                  tags: [
-                    { name: "GitHub", link: "https://github.com/Diechewood/EZSender" },
-                    { name: "Website", link: "https://ezsender-demo.com" },
-                    { name: "Documentation", action: () => handleDocumentationClick("ezsender") }
+                  description: "A mass email campaign system leveraging AWS services for scalable and secure email delivery.",
+                  technologies: ["React", "Node.js", "AWS SES", "DynamoDB", "Lambda"],
+                  links: [
+                    { name: "GitHub", url: "https://github.com/Diechewood/EZSender", icon: <Github className="w-4 h-4 mr-2" /> },
+                    { name: "Website", url: "https://ezsender-demo.com", icon: <Globe className="w-4 h-4 mr-2" /> },
+                    { name: "Documentation", action: () => handleDocumentationClick("ezsender"), icon: <FileText className="w-4 h-4 mr-2" /> }
                   ]
                 },
                 {
                   title: "Portfolio Site",
                   image: "/images/portfolio-site.png",
                   category: "Project",
-                  tags: [
-                    { name: "GitHub", link: "https://github.com/Diechewood/portfolio-site" },
-                    { name: "Website", link: "https://eliangtz.com" },
-                    { name: "Documentation", action: () => handleDocumentationClick("portfolio-site") }
+                  description: "A responsive and interactive portfolio website showcasing my projects and skills.",
+                  technologies: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
+                  links: [
+                    { name: "GitHub", url: "https://github.com/Diechewood/portfolio-site", icon: <Github className="w-4 h-4 mr-2" /> },
+                    { name: "Website", url: "https://eliangtz.com", icon: <Globe className="w-4 h-4 mr-2" /> },
+                    { name: "Documentation", action: () => handleDocumentationClick("portfolio-site"), icon: <FileText className="w-4 h-4 mr-2" /> }
                   ]
                 },
                 {
                   title: "SpeedyStats",
                   image: "/images/speedystats.png",
                   category: "Project",
-                  tags: [
-                    { name: "GitHub", link: "https://github.com/Diechewood/speedystats" },
-                    { name: "Website", link: "https://speedystats-demo.com" },
-                    { name: "Documentation", action: () => handleDocumentationClick("speedystats") }
+                  description: "A real-time analytics dashboard for monitoring and visualizing application performance metrics.",
+                  technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Docker"],
+                  links: [
+                    { name: "GitHub", url: "https://github.com/Diechewood/speedystats", icon: <Github className="w-4 h-4 mr-2" /> },
+                    { name: "Website", url: "https://speedystats-demo.com", icon: <Globe className="w-4 h-4 mr-2" /> },
+                    { name: "Documentation", action: () => handleDocumentationClick("speedystats"), icon: <FileText className="w-4 h-4 mr-2" /> }
                   ]
                 },
               ].map((project, index) => (
                 <motion.div
                   key={project.title}
-                  className="flex flex-col relative overflow-hidden rounded-lg shadow-lg bg-[#3E2723]"
+                  className="flex flex-col lg:flex-row relative overflow-hidden rounded-lg shadow-lg bg-[#3E2723]"
                   initial="hidden"
                   animate="visible"
                   variants={fadeInVariants}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className="relative w-full h-48">
+                  <div className="relative w-full lg:w-64 h-64 flex-shrink-0">
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -426,27 +434,39 @@ export function Portfolio() {
                       {project.category}
                     </div>
                   </div>
-                  <div className="p-4 flex-grow">
-                    <h3 className="text-lg font-semibold text-[#FFF8E1] mb-2">{project.title}</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        tag.name === "Documentation" ? (
+                  <div className="p-4 flex-grow flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold text-[#FFF8E1] mb-2">{project.title}</h3>
+                      <div className="flex flex-wrap gap-1 mb-2">
+                        {project.technologies.map((tech) => (
+                          <span key={tech} className="bg-[#C4A484] text-[#3E2723] text-xs font-bold px-3 py-1 rounded-full">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="text-[#C4A484] mb-4">{project.description}</p>
+                    </div>
+                    <div className="flex flex-wrap justify-center lg:justify-end gap-2">
+                      {project.links.map((link) => (
+                        link.action ? (
                           <button
-                            key={tag.name}
-                            onClick={tag.action}
-                            className="bg-[#C4A484] text-[#3E2723] text-xs font-bold px-2 py-1 rounded hover:bg-[#E6DCC8] transition-colors duration-300"
+                            key={link.name}
+                            onClick={link.action}
+                            className="bg-[#C4A484] text-[#3E2723] text-sm font-bold px-4 py-2 rounded hover:bg-[#E6DCC8] transition-colors duration-300 flex items-center justify-center"
                           >
-                            {tag.name}
+                            {link.icon}
+                            {link.name}
                           </button>
                         ) : (
                           <a
-                            key={tag.name}
-                            href={tag.link}
+                            key={link.name}
+                            href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-[#C4A484] text-[#3E2723] text-xs font-bold px-2 py-1 rounded hover:bg-[#E6DCC8] transition-colors duration-300"
+                            className="bg-[#C4A484] text-[#3E2723] text-sm font-bold px-4 py-2 rounded hover:bg-[#E6DCC8] transition-colors duration-300 flex items-center justify-center"
                           >
-                            {tag.name}
+                            {link.icon}
+                            {link.name}
                           </a>
                         )
                       ))}
