@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { Globe, FileText, Brain, MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin, Cloud, LockKeyhole, Infinity, ServerCog, Mail, BriefcaseBusiness, GraduationCap, ChevronRight } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useParams, usePathname } from 'next/navigation'
 import ProjectDocumentation from '../app/docs/[project]/ProjectDocumentation'
@@ -236,8 +236,8 @@ export function Portfolio() {
             <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
               <h4 className="text-xl font-semibold mb-2">Cloud Technologies</h4>
               <ul className="list-disc list-inside">
-                <li>Amazon Web Services (AWS)</li>
-                <li>Google Cloud Platform (GCP)</li>
+                <li>Amazon Web Services (Cognito, Lambda, Amplify, S3, RDS, SES)</li>
+                <li>Google Cloud Platform</li>
                 <li>Kubernetes</li>
                 <li>Docker</li>
               </ul>
@@ -276,10 +276,10 @@ export function Portfolio() {
                 "date": "June 2024 - Present",
                 "location": "Houston, Texas",
                 "responsibilities": [
-                  "Delivered exceptional customer service by identifying guest needs and providing tailored solutions, ensuring high satisfaction levels.",
-                  "Efficiently managed multiple tasks during peak service, prioritizing and organizing workflow for smooth operations.",
-                  "Collaborated with team members to troubleshoot service issues, resolve conflicts, and maintain high standards of service quality.",
-                  "Maintained detailed records of guest preferences, contributing to a personalized and data-driven customer experience.",
+                  "Generated over $8,000 in food sales in a single day, consistently exceeding daily sales targets by 15-20% through personalized guest engagement and strategic upselling techniques.",
+                  "Increased guest satisfaction scores by 25% through data-driven service strategies, meticulously tracking customer preferences to tailor recommendations, paralleling CRM-driven sales approaches in cloud solutions.",
+                  "Led training for 10+ team members, highlighting leadership and process optimization skills relevant to cloud implementation and customer success management.",
+                  "Achieved an average of 10-12 high-value sales per shift, regularly turning first-time guests into repeat customers, demonstrating relationship-building skills essential for tech sales and customer retention in cloud services.",
                   "Adapted to a fast-paced environment, applying problem-solving skills to anticipate and address guest concerns in real-time."
                 ]
               },
@@ -368,34 +368,37 @@ export function Portfolio() {
               {[
                 {
                   title: "Image Suite",
+                  slug: "image-suite",
                   image: "/images/image-suite.png",
                   category: "Project",
                   description: "A comprehensive image processing and management tool built with React and AWS services.",
-                  technologies: ["React", "Node.js", "AWS S3", "DynamoDB", "Lambda"],
+                  technologies: ["Python", "Flask", "Pillow", "rembg", "Docker", "Google Cloud Run"],
                   links: [
                     { name: "GitHub Repo", url: "https://github.com/Diechewood/image-suite", icon: <Github className="w-4 h-4 mr-2" /> },
-                    { name: "Website", url: "https://image-suite-demo.com", icon: <Globe className="w-4 h-4 mr-2" /> },
+                    { name: "Website", url: "https://image-suite-905291854682.us-central1.run.app", icon: <Globe className="w-4 h-4 mr-2" /> },
                     { name: "Documentation", action: () => handleDocumentationClick("image-suite"), icon: <FileText className="w-4 h-4 mr-2" /> }
                   ]
                 },
                 {
                   title: "EZSender",
+                  slug: "ezsender",
                   image: "/images/ezsender.png",
                   category: "Project",
                   description: "A mass email campaign system leveraging AWS services for scalable and secure email delivery.",
-                  technologies: ["React", "Node.js", "AWS SES", "DynamoDB", "Lambda"],
+                  technologies: ["AWS S3", "AWS Lambda", "AWS SES", "AWS Cognito", "Bootstrap", "Node.js"],
                   links: [
                     { name: "GitHub Repo", url: "https://github.com/Diechewood/EZSender", icon: <Github className="w-4 h-4 mr-2" /> },
-                    { name: "Website", url: "https://ezsender-demo.com", icon: <Globe className="w-4 h-4 mr-2" /> },
+                    { name: "Website", url: "http://ezsender-app.s3-website-us-west-1.amazonaws.com/", icon: <Globe className="w-4 h-4 mr-2" /> },
                     { name: "Documentation", action: () => handleDocumentationClick("ezsender"), icon: <FileText className="w-4 h-4 mr-2" /> }
                   ]
                 },
                 {
                   title: "Portfolio Site",
+                  slug: "portfolio-site",
                   image: "/images/portfolio-site.png",
                   category: "Project",
                   description: "A responsive and interactive portfolio website showcasing my projects and skills.",
-                  technologies: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
+                  technologies: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "AWS Amplify"],
                   links: [
                     { name: "GitHub Repo", url: "https://github.com/Diechewood/portfolio-site", icon: <Github className="w-4 h-4 mr-2" /> },
                     { name: "Website", url: "https://eliangtz.com", icon: <Globe className="w-4 h-4 mr-2" /> },
@@ -403,11 +406,12 @@ export function Portfolio() {
                   ]
                 },
                 {
-                  title: "SpeedyStats",
+                  title: "SpeedyStats (WIP)",
+                  slug: "speedystats",
                   image: "/images/speedystats.png",
                   category: "Project",
-                  description: "A real-time analytics dashboard for monitoring and visualizing application performance metrics.",
-                  technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Docker"],
+                  description: "A real-time analytics dashboard for monitoring and visualizing speed metrics for longboarders.",
+                  technologies: ["Swift", "AWS Lambda", "DynamoDB", "AWS S3", "GPS Tracking"],
                   links: [
                     { name: "GitHub Repo", url: "https://github.com/Diechewood/speedystats", icon: <Github className="w-4 h-4 mr-2" /> },
                     { name: "Documentation", action: () => handleDocumentationClick("speedystats"), icon: <FileText className="w-4 h-4 mr-2" /> }
@@ -435,10 +439,15 @@ export function Portfolio() {
                   </div>
                   <div className="p-4 flex-grow flex flex-col justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold text-[#FFF8E1] mb-2">{project.title}</h3>
+                      <h3 
+                        className="text-lg font-semibold text-[#FFF8E1] mb-2 cursor-pointer hover:underline transition-all duration-300"
+                        onClick={() => handleDocumentationClick(project.slug)}
+                      >
+                        {project.title}
+                      </h3>
                       <div className="flex flex-wrap gap-1 mb-2">
                         {project.technologies.map((tech) => (
-                          <span key={tech} className="bg-[#C4A484] text-[#3E2723] text-xs font-bold px-3 py-1 rounded-full">
+                          <span key={tech} className="bg-[#C4A484] text-[#3E2723] text-xs font-bold px-3 py-1 rounded-full mb-2">
                             {tech}
                           </span>
                         ))}
@@ -653,9 +662,22 @@ export function Portfolio() {
           </nav>
 
           {/* Content area */}
-          <main className="flex-grow bg-[#C4A484] p-6 rounded-lg shadow-lg border-2 border-[#3E2723]">
-            {content[activeTab]}
-          </main>
+          <main className="flex-grow bg-[#C4A484] p-6 rounded-lg shadow-lg border-2 border-[#3E2723] overflow-y-auto scrollbar-hide" 
+  style={{
+    height: `calc(100vh - ${stickyTop}px - 2rem)`,
+    position: 'sticky',
+    top: `calc(${stickyTop}px + 1rem)`,
+    scrollbarWidth: 'none',
+    msOverflowStyle: 'none',
+  }}
+>
+  <style jsx>{`
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+  `}</style>
+  {content[activeTab]}
+</main>
         </div>
       </div>
     </div>
