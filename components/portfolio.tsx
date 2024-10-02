@@ -62,6 +62,7 @@ export function Portfolio() {
   const [stickyTop, setStickyTop] = useState(0)
   const [selectedProject, setSelectedProject] = useState<string | null>(null)
   const headerRef = useRef<HTMLElement>(null)
+  const mainContentRef = useRef<HTMLElement>(null)
   const params = useParams()
   const pathname = usePathname()
 
@@ -93,9 +94,24 @@ export function Portfolio() {
     }
   }, [pathname, params])
 
+  const scrollToTop = () => {
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   const handleDocumentationClick = (projectSlug: string) => {
     setActiveTab('Portfolio')
     setSelectedProject(projectSlug)
+    scrollToTop()
+  }
+
+  const handleTabChange = (tab: TabType) => {
+    setActiveTab(tab)
+    if (tab === 'Portfolio') {
+      setSelectedProject(null)
+    }
+    scrollToTop()
   }
 
   const content: Record<TabType, JSX.Element> = {
@@ -646,7 +662,7 @@ export function Portfolio() {
               {tabs.map((tab) => (
                 <li key={tab}>
                   <button
-                    onClick={() => setActiveTab(tab)}
+                    onClick={() => handleTabChange(tab)}
                     className={`w-full aspect-rectangle md:aspect-auto md:h-24 md:w-24 flex flex-col items-center justify-center p-2 rounded-md transition-colors ${
                       activeTab === tab
                         ? 'bg-[#3E2723] text-[#FFF8E1]'
@@ -663,6 +679,7 @@ export function Portfolio() {
 
           {/* Content area */}
           <main 
+            ref={mainContentRef}
             className="flex-grow bg-[#C4A484] p-6 rounded-lg shadow-lg border-2 border-[#3E2723] overflow-y-auto scrollbar-hide" 
             style={{
               height: `calc(100vh - ${stickyTop}px - 2rem)`,
