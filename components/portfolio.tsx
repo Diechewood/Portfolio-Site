@@ -662,22 +662,23 @@ export function Portfolio() {
           </nav>
 
           {/* Content area */}
-          <main className="flex-grow bg-[#C4A484] p-6 rounded-lg shadow-lg border-2 border-[#3E2723] overflow-y-auto scrollbar-hide" 
-  style={{
-    height: `calc(100vh - ${stickyTop}px - 2rem)`,
-    position: 'sticky',
-    top: `calc(${stickyTop}px + 1rem)`,
-    scrollbarWidth: 'none',
-    msOverflowStyle: 'none',
-  }}
->
-  <style jsx>{`
-    .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-    }
-  `}</style>
-  {content[activeTab]}
-</main>
+          <main 
+            className="flex-grow bg-[#C4A484] p-6 rounded-lg shadow-lg border-2 border-[#3E2723] overflow-y-auto scrollbar-hide" 
+            style={{
+              height: `calc(100vh - ${stickyTop}px - 2rem)`,
+              position: 'sticky',
+              top: `calc(${stickyTop}px + 1rem)`,
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}
+          >
+            <style jsx>{`
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+            {content[activeTab]}
+          </main>
         </div>
       </div>
     </div>
