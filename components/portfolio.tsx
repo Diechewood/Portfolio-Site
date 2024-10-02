@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { Globe, FileText, Brain, MessageSquareMore, Wrench, Newspaper, UserRound, Download, MapPin, Github, Linkedin, Cloud, LockKeyhole, Infinity, ServerCog, Mail, BriefcaseBusiness, GraduationCap, ChevronRight } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { useParams, usePathname } from 'next/navigation'
 import ProjectDocumentation from '../app/docs/[project]/ProjectDocumentation'
@@ -373,7 +373,7 @@ export function Portfolio() {
                   description: "A comprehensive image processing and management tool built with React and AWS services.",
                   technologies: ["React", "Node.js", "AWS S3", "DynamoDB", "Lambda"],
                   links: [
-                    { name: "GitHub", url: "https://github.com/Diechewood/image-suite", icon: <Github className="w-4 h-4 mr-2" /> },
+                    { name: "GitHub Repo", url: "https://github.com/Diechewood/image-suite", icon: <Github className="w-4 h-4 mr-2" /> },
                     { name: "Website", url: "https://image-suite-demo.com", icon: <Globe className="w-4 h-4 mr-2" /> },
                     { name: "Documentation", action: () => handleDocumentationClick("image-suite"), icon: <FileText className="w-4 h-4 mr-2" /> }
                   ]
@@ -385,7 +385,7 @@ export function Portfolio() {
                   description: "A mass email campaign system leveraging AWS services for scalable and secure email delivery.",
                   technologies: ["React", "Node.js", "AWS SES", "DynamoDB", "Lambda"],
                   links: [
-                    { name: "GitHub", url: "https://github.com/Diechewood/EZSender", icon: <Github className="w-4 h-4 mr-2" /> },
+                    { name: "GitHub Repo", url: "https://github.com/Diechewood/EZSender", icon: <Github className="w-4 h-4 mr-2" /> },
                     { name: "Website", url: "https://ezsender-demo.com", icon: <Globe className="w-4 h-4 mr-2" /> },
                     { name: "Documentation", action: () => handleDocumentationClick("ezsender"), icon: <FileText className="w-4 h-4 mr-2" /> }
                   ]
@@ -397,7 +397,7 @@ export function Portfolio() {
                   description: "A responsive and interactive portfolio website showcasing my projects and skills.",
                   technologies: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
                   links: [
-                    { name: "GitHub", url: "https://github.com/Diechewood/portfolio-site", icon: <Github className="w-4 h-4 mr-2" /> },
+                    { name: "GitHub Repo", url: "https://github.com/Diechewood/portfolio-site", icon: <Github className="w-4 h-4 mr-2" /> },
                     { name: "Website", url: "https://eliangtz.com", icon: <Globe className="w-4 h-4 mr-2" /> },
                     { name: "Documentation", action: () => handleDocumentationClick("portfolio-site"), icon: <FileText className="w-4 h-4 mr-2" /> }
                   ]
@@ -409,8 +409,7 @@ export function Portfolio() {
                   description: "A real-time analytics dashboard for monitoring and visualizing application performance metrics.",
                   technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Docker"],
                   links: [
-                    { name: "GitHub", url: "https://github.com/Diechewood/speedystats", icon: <Github className="w-4 h-4 mr-2" /> },
-                    { name: "Website", url: "https://speedystats-demo.com", icon: <Globe className="w-4 h-4 mr-2" /> },
+                    { name: "GitHub Repo", url: "https://github.com/Diechewood/speedystats", icon: <Github className="w-4 h-4 mr-2" /> },
                     { name: "Documentation", action: () => handleDocumentationClick("speedystats"), icon: <FileText className="w-4 h-4 mr-2" /> }
                   ]
                 },
