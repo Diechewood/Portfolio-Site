@@ -110,7 +110,7 @@ export function Portfolio() {
         >
           <div className="mb-4">
             <AnimatedText 
-              text="Hello! I&apos;m Elian Gutierrez, a cloud computing enthusiast with a passion for cloud security. Currently, I am pursuing a Bachelor of Science in Computer Information Systems from the University of Houston, where I have honed my skills in cloud architecture, security, and application development. With a strong academic foundation, including relevant coursework like Cloud Computing Architecture and Enterprise Application Development, I&apos;m on a mission to secure the cloud and help organizations protect their data and infrastructure."
+              text="Hello! I&apos;m Elian Gutierrez, a cloud computing enthusiast with a passion for cloud security. Currently, I am pursuing a Bachelor of Engineering in Computer Information Systems from the University of Houston, where I have honed my skills in cloud architecture, security, and application development. With a strong academic foundation, including relevant coursework like Cloud Computing Architecture and Enterprise Application Development, I&apos;m on a mission to secure the cloud and help organizations protect their data and infrastructure."
               animationKey={`${activeTab}-1`}
             />
           </div>
@@ -201,7 +201,7 @@ export function Portfolio() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
               <h4 className="text-xl font-semibold">University of Houston - Main Campus</h4>
-              <p>Bachelor of Science in Computer Information Systems</p>
+              <p>Bachelor of Engineering in Computer Information Systems</p>
               <p>Minor in Technology, Leadership, and Innovation Management</p>
               <p>GPA: 3.53</p>
               <p>Houston, Texas | December 2024</p>
@@ -273,7 +273,7 @@ export function Portfolio() {
               {
                 "title": "PostScript",
                 "position": "Fine Dining Server",
-                "date": "June 2023 - Present",
+                "date": "June 2024 - Present",
                 "location": "Houston, Texas",
                 "responsibilities": [
                   "Delivered exceptional customer service by identifying guest needs and providing tailored solutions, ensuring high satisfaction levels.",
@@ -286,7 +286,7 @@ export function Portfolio() {
               {
                 title: "Adair Kitchen",
                 position: "Lead Server / Cashier / Barista",
-                date: "February 2024 - Current",
+                date: "June 2023 - August 2024",
                 location: "Houston, Texas",
                 responsibilities: [
                   "Collaborated with team members to ensure efficient service, especially during peak times.",
