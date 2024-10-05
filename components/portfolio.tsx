@@ -630,7 +630,7 @@ export function Portfolio() {
                   </div>
                   <div>
                     <p className="text-[#C4A484] text-sm font-bold">Resume</p>
-                    <a href="https://drive.google.com/file/d/13fDJVjeoRl5inC5990gyvs0mQ7I8JCcR/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline flex items-center">
+                    <a href="https://drive.google.com/drive/folders/1xj651lOmp9LfEtIXLVxWHQoXg_RTpWAa?usp=drive_link" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline flex items-center">
                       Download <Download className="w-4 h-4 ml-1" />
                     </a>
                   </div>
