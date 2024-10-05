@@ -387,7 +387,7 @@ export function Portfolio() {
                   slug: "image-suite",
                   image: "/images/image-suite.png",
                   category: "Project",
-                  description: "A comprehensive image processing and management tool built with React and AWS services.",
+                  description: "A comprehensive image processing and management tool built with Bootstrap and deployed with Google Cloud Run services.",
                   technologies: ["Python", "Flask", "Pillow", "rembg", "Docker", "Google Cloud Run"],
                   links: [
                     { name: "GitHub Repo", url: "https://github.com/Diechewood/image-suite", icon: <Github className="w-4 h-4 mr-2" /> },
@@ -400,7 +400,7 @@ export function Portfolio() {
                   slug: "ezsender",
                   image: "/images/ezsender.png",
                   category: "Project",
-                  description: "A mass email campaign system leveraging AWS services for scalable and secure email delivery.",
+                  description: "A mass email campaign system which uses AWS services for scalable and secure email delivery.",
                   technologies: ["AWS S3", "AWS Lambda", "AWS SES", "AWS Cognito", "Bootstrap", "Node.js"],
                   links: [
                     { name: "GitHub Repo", url: "https://github.com/Diechewood/EZSender", icon: <Github className="w-4 h-4 mr-2" /> },
@@ -629,8 +629,8 @@ export function Portfolio() {
                     <a href="mailto:EzTz721@gmail.com" className="text-sm hover:underline">EzTz721@gmail.com</a>
                   </div>
                   <div>
-                    <p className="text-[#C4A484] text-sm font-bold">CV</p>
-                    <a href="#" className="text-sm hover:underline flex items-center">
+                    <p className="text-[#C4A484] text-sm font-bold">Resume</p>
+                    <a href="https://drive.google.com/file/d/13fDJVjeoRl5inC5990gyvs0mQ7I8JCcR/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline flex items-center">
                       Download <Download className="w-4 h-4 ml-1" />
                     </a>
                   </div>
