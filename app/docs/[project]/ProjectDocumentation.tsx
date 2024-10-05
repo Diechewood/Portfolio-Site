@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import Image from 'next/image'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Github, ExternalLink, ZoomIn, X } from 'lucide-react'
 
@@ -686,6 +687,43 @@ const CodeBlock = ({ code, language }: { code: string; language: string }) => (
   </pre>
 )
 
+const ZoomedImageOverlay = ({ imageSrc, onClose }: { imageSrc: string; onClose: () => void }) => {
+  return createPortal(
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center cursor-pointer z-[9999]"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.8, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="relative w-[90vw] h-[90vh]"
+        >
+          <Image
+            src={imageSrc}
+            alt="Zoomed image"
+            layout="fill"
+            objectFit="contain"
+          />
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 bg-[#C4A484] text-[#3E2723] p-2 rounded-full hover:bg-[#E6DCC8] transition-colors duration-300"
+          >
+            <X size={24} />
+          </button>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>,
+    document.body
+  )
+}
+
 export default function ProjectDocumentation({ project }: Props) {
   const projectInfo = projectData[project]
   const [activeSection, setActiveSection] = useState('')
@@ -787,7 +825,7 @@ export default function ProjectDocumentation({ project }: Props) {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-4 sm:mb-6 md:mb-8">
-          <nav className="md:col-span-1 bg-[#5D4037] p-2 sm:p-3 md:p-4 rounded-lg md:sticky md:top-4 md:self-start order-2 md:order-1">
+          <nav className="md:col-span-1 bg-[#5D4037] p-2 sm:p-3 md:p-4 rounded-lg md:sticky md:top-4 md:self-start order-2 md:order-1 z-0">
             <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Table of Contents</h2>
             <ul className="space-y-1 sm:space-y-2">
               {projectInfo.sections.map((section) => (
@@ -864,38 +902,13 @@ export default function ProjectDocumentation({ project }: Props) {
           </motion.div>
         ))}
       </motion.div>
-      <AnimatePresence>
-        {zoomedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center cursor-pointer"
-            onClick={() => setZoomedImage(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              className="relative w-[90vw] h-[90vh]"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image
-                src={zoomedImage}
-                alt="Zoomed image"
-                layout="fill"
-                objectFit="contain"
-              />
-              <button
-                onClick={() => setZoomedImage(null)}
-                className="absolute top-4 right-4 bg-[#C4A484] text-[#3E2723] p-2 rounded-full hover:bg-[#E6DCC8] transition-colors duration-300"
-              >
-                <X size={24} />
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* ... (keep existing content) */}
+      {zoomedImage && (
+        <ZoomedImageOverlay
+          imageSrc={zoomedImage}
+          onClose={() => setZoomedImage(null)}
+        />
+      )}
     </motion.div>
   )
 }
