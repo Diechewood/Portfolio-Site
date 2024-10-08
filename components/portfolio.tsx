@@ -287,51 +287,49 @@ export function Portfolio() {
           <div className="relative">
             {[
               {
-                "title": "PostScript",
-                "position": "Fine Dining Server",
+                "title": "Fine Dining Sales Support",
+                "position": "PostScript",
                 "date": "June 2024 - Present",
                 "location": "Houston, Texas",
                 "responsibilities": [
-                  "Generated over $8,000 in food sales in a single day, consistently exceeding daily sales targets by 15-20% through personalized guest engagement and strategic upselling techniques.",
-                  "Increased guest satisfaction scores by 25% through data-driven service strategies, meticulously tracking customer preferences to tailor recommendations, paralleling CRM-driven sales approaches in cloud solutions.",
-                  "Led training for 10+ team members, highlighting leadership and process optimization skills relevant to cloud implementation and customer success management.",
-                  "Achieved an average of 10-12 high-value sales per shift, regularly turning first-time guests into repeat customers, demonstrating relationship-building skills essential for tech sales and customer retention in cloud services.",
-                  "Adapted to a fast-paced environment, applying problem-solving skills to anticipate and address guest concerns in real-time."
+                  "Worked with 90+ clients per day, efficiently multitasking client requests in a critical, fast-paced environment.",
+                  "Generated over $8,000 in food sales in a single day, consistently exceeding daily sales targets by 15-20%, increasing revenue and PPA.",
+                  "Led training for 10+ team members, highlighting leadership and process optimization, raising secret shopper scores by 20+ points.",
+                  "Achieved an average of 20-22 high-value sales per shift, while turning first-time clients into repeat customers, increasing daily guest counts."
                 ]
               },
               {
-                title: "Adair Kitchen",
-                position: "Lead Server / Cashier / Barista",
-                date: "June 2023 - August 2024",
-                location: "Houston, Texas",
-                responsibilities: [
-                  "Collaborated with team members to ensure efficient service, especially during peak times.",
-                  "Made 70+ espresso-based drinks per hour in a quick and efficient manner, while multitasking taking orders, cleaning, and checking inventory.",
-                  "Assisted with inventory management and notified management of any shortages and surpluses.",
-                  "Managed 250+ cash register operations per day, ensuring accurate transactions with speed and accuracy."
+                "title": "Lead Server / Cashier / Barista",
+                "position": "Adair Kitchen",
+                "date": "November 2023 - June 2024",
+                "location": "Houston, Texas",
+                "responsibilities": [
+                  "Collaborated with team members to ensure efficient service, especially during intense peak times.",
+                  "Multitasked over 70+ espresso-based drinks per hour in a quick and efficient manner, while taking orders, cleaning, and checking inventory.",
+                  "Managed 250+ client operations per day, ensuring accurate transactions with speed and accuracy, leading to quick and efficient service."
                 ]
               },
               {
-                title: "Willies Grill and Icehouse",
-                position: "Server / Cashier / Bartender",
-                date: "August 2022 - June 2023",
-                location: "Houston, Texas",
-                responsibilities: [
-                  "Managed cash register operations, processing transactions with accuracy.",
-                  "Offered friendly and prompt customer service, responded to inquiries, and resolved complaints.",
-                  "Assisted with inventory management and notified management of any shortages.",
-                  "Collaborated with team members to ensure efficient service, especially during peak times."
+                "title": "Lead Technical Support Analyst",
+                "position": "University of Houston",
+                "date": "January 2022 - November 2023",
+                "location": "Houston, Texas",
+                "responsibilities": [
+                  "Resolved over 1,200 technical issues per month, with a 97% resolution rate through troubleshooting and coordination with other departments.",
+                  "Supported approximately 400 users each month with various IT-related issues, including account access, software installation, and network connectivity, ensuring minimal downtime and increased user satisfaction.",
+                  "Provided hands-on support and guidance during system upgrades and maintenance, assisting over 200 users in adapting to new features and software updates each semester.",
+                  "Collaborated with a team of support specialists to optimize response times and enhance ticket management processes, reducing average response time by 25%, resulting in higher customer satisfaction scores."
                 ]
               },
               {
-                title: "University of Houston Student Financials Office",
-                position: "Customer Service Representative",
-                date: "September 2021 - August 2022",
-                location: "Houston, Texas",
-                responsibilities: [
+                "title": "Customer Service Representative",
+                "position": "University of Houston",
+                "date": "September 2021 - January 2022",
+                "location": "Houston, Texas",
+                "responsibilities": [
                   "Successfully identified and resolved at least 1,500 client issues per month through effective communication and coordination with other team members, resulting in a resolution rate of 95% or higher.",
-                  "Assisted at least 300 students and parents per month with account issues.",
-                  "Consistently achieved a positive overall customer service experience by maintaining a customer satisfaction rate of 98% or higher and receiving positive feedback and compliments from customers on at least 50% of interactions.",
+                  "Assisted 110+ students and parents per day with account issues, ticket updates, and financial questions.",
+                  "Consistently achieved a positive overall customer service experience by maintaining a customer satisfaction rate of 98% or higher and receiving positive feedback and compliments from customers on at least 70% of interactions."
                 ]
               }
             ].map((job, index, array) => (
