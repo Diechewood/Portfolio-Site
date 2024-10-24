@@ -126,7 +126,7 @@ export function Portfolio() {
         >
           <div className="mb-4">
             <AnimatedText 
-              text="Hello! I&apos;m Elian Gutierrez, a cloud computing enthusiast with a passion for cloud security. Currently, I am pursuing a Bachelor of Engineering in Computer Information Systems from the University of Houston, where I have honed my skills in cloud architecture, security, and application development. With a strong academic foundation, including relevant coursework like Cloud Computing Architecture and Enterprise Application Development, I&apos;m on a mission to secure the cloud and help organizations protect their data and infrastructure."
+              text="Adept customer-focused professional with a passion for keeping up with attention to detail, recently earning a Bachelor of Engineering in Computer Information Systems. Using my hands-on experience in networking and the cloud, as well as a commitment to clear, effective communication, I thrive in fast-paced environments where collaboration and customer satisfaction are key. Ready to bring my skills to resolve technical challenges, ensure smooth operations, and build robust cloud solutions."
               animationKey={`${activeTab}-1`}
             />
           </div>
@@ -310,7 +310,7 @@ export function Portfolio() {
                 ]
               },
               {
-                "title": "Lead Technical Support Analyst",
+                "title": "Technical Support Analyst",
                 "position": "University of Houston",
                 "date": "January 2022 - November 2023",
                 "location": "Houston, Texas",
