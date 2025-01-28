@@ -126,7 +126,7 @@ export function Portfolio() {
         >
           <div className="mb-4">
             <AnimatedText 
-              text="Adept customer-focused professional with a passion for keeping up with attention to detail, recently earning a Bachelor of Engineering in Computer Information Systems. Using my hands-on experience in networking and the cloud, as well as a commitment to clear, effective communication, I thrive in fast-paced environments where collaboration and customer satisfaction are key. Ready to bring my skills to resolve technical challenges, ensure smooth operations, and build robust cloud solutions."
+              text="Adept customer-focused professional with a passion for keeping up with attention to detail, recently earning a Bachelor of Science in Computer Information Systems. Using my hands-on experience in networking and the cloud, as well as a commitment to clear, effective communication, I thrive in fast-paced environments where collaboration and customer satisfaction are key. Ready to bring my skills to resolve technical challenges, ensure smooth operations, and build robust cloud solutions."
               animationKey={`${activeTab}-1`}
             />
           </div>
@@ -216,20 +216,19 @@ export function Portfolio() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
-              <h4 className="text-xl font-semibold">University of Houston - Main Campus</h4>
-              <p>Bachelor of Engineering in Computer Information Systems</p>
+              <h4 className="text-xl font-semibold">Bachelor of Science in Computer Information Systems</h4>
+              <p>University of Houston - Main Campus</p>
               <p>Minor in Technology, Leadership, and Innovation Management</p>
               <p>GPA: 3.53</p>
               <p>Houston, Texas | December 2024</p>
             </div>
             <div className="bg-[#E6DCC8] p-4 rounded-lg shadow-lg">
-              <h4 className="text-xl font-semibold mb-2">Relevant Coursework</h4>
+              <h4 className="text-xl font-semibold mb-2">Certifications and Relevant Coursework</h4>
               <ul className="list-disc list-inside">
+                <li>AWS - Certified Cloud Practitioner</li>
                 <li>Cloud Computing Architecture</li>
                 <li>Intrusion Detection and Incident Response</li>
                 <li>Enterprise Application Development</li>
-                <li>Organizational Leadership and Supervision</li>
-                <li>Fundamentals of Information Security</li>
                 <li>Information Systems Operations</li>
               </ul>
             </div>
@@ -316,10 +315,8 @@ export function Portfolio() {
                 "location": "Houston, Texas",
                 "responsibilities": [
                   "Resolved over 1,200 technical issues per month, with a 97% resolution rate through troubleshooting and coordination with other departments.",
-                  "Supported approximately 400 users each month with various IT-related issues, including account access, software installation, and network connectivity, ensuring minimal downtime and increased user satisfaction.",
-                  "Provided hands-on support and guidance during system upgrades and maintenance, assisting over 200 users in adapting to new features and software updates each semester.",
-                  "Collaborated with a team of support specialists to optimize response times and enhance ticket management processes, reducing average response time by 25%, resulting in higher customer satisfaction scores."
-                ]
+                  "Deployed Windows 11 on approximately 400 computers each month, while working on various IT-related issues, including network access, password management, and 2FA ensuring minimal downtime and lowered user complaints by 35%.",
+                  "Provided hands-on support and guidance during system upgrades and maintenance, assisting over 200 users in adapting to new features and software updates each semester.",                ]
               },
               {
                 "title": "Customer Service Representative",
@@ -608,7 +605,7 @@ export function Portfolio() {
               </div>
               <div className="text-center sm:text-left">
                 <h1 className="text-3xl font-bold text-[#FFF8E1]">Elian Gutierrez</h1>
-                <p className="text-[#C4A484]">DevOps | Cloud Computing Specialist</p>
+                <p className="text-[#C4A484]">Certified Cloud Computing and IT Specialist</p>
                 <div className="flex justify-center sm:justify-start space-x-4 mt-2">
                   <a href="https://www.linkedin.com/in/elian-gutierrez-795088264/" target="_blank" rel="noopener noreferrer" className="text-[#C4A484] hover:text-[#FFF8E1]">
                     <Linkedin className="w-5 h-5" />
@@ -635,7 +632,7 @@ export function Portfolio() {
                   <div className="col-span-2">
                     <p className="text-[#C4A484] text-sm font-bold">LOCATION</p>
                     <p className="text-sm flex items-center">
-                      Houston, Texas <MapPin className="w-4 h-4 ml-1" />
+                      Costa Mesa, California <MapPin className="w-4 h-4 ml-1" />
                     </p>
                   </div>
                 </div>
